@@ -18,6 +18,6 @@ public class Ritual {
     public Ritual(String name){
         this.name = name;
         this.damage = 3;
-        isHeal = (name.equals("blessing"));
+        this.isHeal = (name.equals("blessing"));
     }
 }
