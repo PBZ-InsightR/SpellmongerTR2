@@ -30,4 +30,12 @@ public class Creature {
                 break;
         }
     }
+
+    public int Dammages(){
+        return this.damage;
+    }
+
+    public String Name(){
+        return this.name;
+    }
 }

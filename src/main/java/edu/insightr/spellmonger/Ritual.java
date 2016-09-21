@@ -20,4 +20,12 @@ public class Ritual {
         this.damage = 3;
         this.isHeal = (name.equals("blessing"));
     }
+
+    public boolean IsHeal() {
+        return this.isHeal;
+    }
+
+    public String Name() {
+        return this.name;
+    }
 }
