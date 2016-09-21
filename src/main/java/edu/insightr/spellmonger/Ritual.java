@@ -11,9 +11,13 @@ public class Ritual {
     private int damage;
     private boolean isHeal;
 
+    /**
+     * Constructor
+     * @param name curse or blessing
+     */
     public Ritual(String name){
         this.name = name;
         this.damage = 3;
-        isHeal = (name.equals("blessing")) ? true : false;
+        isHeal = (name.equals("blessing"));
     }
 }
