@@ -13,7 +13,14 @@ class Player {
 
     Player(String name){
         this.name = name;
-        this.deck = new ArrayList<>();
+        this.deck = new ArrayList<>(35);
+        /*for(int i = 0; i < 35; i++){
+            if(i%6 == 0){
+
+                //deck.add(new Card());
+            }
+        }*/
+
     }
 
     private ArrayList<Card> getDeck(){

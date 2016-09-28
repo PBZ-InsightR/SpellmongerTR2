@@ -98,11 +98,12 @@ public class SpellmongerApp {
         if ("curse".equalsIgnoreCase(cardPool.get(currentCardNumber).getName())) {
             logger.info(currentPlayer.getName() + " draw a Ritual");
             int nbCreatures = playersCreature.get(currentPlayer.getName());
+            playersLifePoints.put(opponent.getName(), (playersLifePoints.get(opponent.getName()) - 3));
             if (nbCreatures > 0) {
-                playersLifePoints.put(opponent.getName(), (playersLifePoints.get(opponent.getName()) - nbCreatures - 3));
+                playersLifePoints.put(opponent.getName(), (playersLifePoints.get(opponent.getName()) - nbCreatures));
                 logger.info("The " + nbCreatures + " creatures of " + currentPlayer.getName() + " attack and deal " + nbCreatures + " damages to its opponent");
             }
-            logger.info(currentPlayer.getName() + " cast a ritual that deals 3 damages to " + opponent);
+            logger.info(currentPlayer.getName() + " cast a ritual that deals 3 damages to " + opponent.getName());
         }
     }
 
