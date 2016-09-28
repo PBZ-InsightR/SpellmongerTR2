@@ -106,9 +106,5 @@ public class SpellmongerApp {
         }
     }
 
-    public void discard(Player currentPlayer, int currentCardNumber) {
-        currentPlayer.getDeck().remove(currentCardNumber);
-    }
-
 }
 
