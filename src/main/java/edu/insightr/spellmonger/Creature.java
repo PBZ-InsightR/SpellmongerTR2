@@ -5,7 +5,7 @@ package edu.insightr.spellmonger;
  * Used to define creatures and damages they do
  */
 
-public class Creature {
+public class Creature extends Card{
     private String name;
     private int damage;
 

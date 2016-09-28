@@ -6,7 +6,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
  * Created by Aurélie on 21/09/2016.
  * Used to define rituals and what they do
  */
-public class Ritual {
+public class Ritual extends Card {
     private String name;
     private int damage;
     private boolean isHeal;
