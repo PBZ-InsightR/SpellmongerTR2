@@ -5,16 +5,15 @@ package edu.insightr.spellmonger;
  * Used to define creatures and damages they do
  */
 
-public class Creature extends Card{
-    private String name;
-    private int damage;
+class Creature extends Card{
+
 
     /**
      * Constructor
      * @param name eagle, wolf or bear
      */
-    public Creature(String name) {
-        this.name = name;
+    Creature(String name) {
+        super(name);
         switch (name) {
             case "eagle":
                 this.damage = 1;
@@ -30,13 +29,5 @@ public class Creature extends Card{
                 this.damage = 0;
                 break;
         }
-    }
-
-    public int Dammages(){
-        return this.damage;
-    }
-
-    public String Name(){
-        return this.name;
     }
 }

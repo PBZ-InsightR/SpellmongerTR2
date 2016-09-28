@@ -11,12 +11,12 @@ class Player {
     private ArrayList<Card> deck;
     private String name;
 
-    public Player (String name){
+    Player(String name){
         this.name = name;
         this.deck = new ArrayList<>();
     }
 
-    public ArrayList<Card> getDeck(){
+    private ArrayList<Card> getDeck(){
         return this.deck;
     }
 
@@ -26,5 +26,9 @@ class Player {
 
     public void discard(int currentCardNumber) {
         this.getDeck().remove(currentCardNumber);
+    }
+
+    String getName(){
+        return this.name;
     }
 }
