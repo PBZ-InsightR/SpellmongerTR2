@@ -16,11 +16,15 @@ class Player {
         this.deck = new ArrayList<>();
     }
 
-    ArrayList<Card> getDeck(){
+    public ArrayList<Card> getDeck(){
         return this.deck;
     }
 
     public Card getCard(int position){
         return this.deck.get(position);
+    }
+
+    public void discard(int currentCardNumber) {
+        this.getDeck().remove(currentCardNumber);
     }
 }
