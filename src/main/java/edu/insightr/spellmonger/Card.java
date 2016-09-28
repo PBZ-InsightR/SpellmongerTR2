@@ -6,7 +6,30 @@ package edu.insightr.spellmonger;
  */
 public abstract class Card {
 
-    public Card(){
+    private String name;
+    private int damage;
+    private boolean isHeal;
+    public Card(String name, int damage, boolean isHeal)
+    {
 
+        this.name = name;
+        this.damage = damage;
+        this.isHeal = isHeal;
+    }
+
+    public Card()
+    {
+
+    }
+
+    public int getDamage(){
+        return this.damage;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+    public boolean getIsHeal() {
+        return isHeal;
     }
 }

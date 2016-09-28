@@ -7,25 +7,16 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
  * Used to define rituals and what they do
  */
 public class Ritual extends Card {
-    private String name;
-    private int damage;
-    private boolean isHeal;
 
     /**
      * Constructor
      * @param name curse or blessing
      */
-    public Ritual(String name){
-        this.name = name;
-        this.damage = 3;
-        this.isHeal = (name.equals("blessing"));
+    public Ritual(String name, int damage, boolean isHeal){
+        name = name;
+        damage = 3;
+        isHeal = (name.equals("blessing"));
     }
 
-    public boolean IsHeal() {
-        return this.isHeal;
-    }
 
-    public String Name() {
-        return this.name;
-    }
 }

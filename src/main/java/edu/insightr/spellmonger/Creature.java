@@ -6,36 +6,30 @@ package edu.insightr.spellmonger;
  */
 
 public class Creature extends Card{
-    private String name;
-    private int damage;
+
 
     /**
      * Constructor
      * @param name eagle, wolf or bear
      */
-    public Creature(String name) {
-        this.name = name;
+    public Creature(String name, int damage, boolean isHeal) {
+        super(name,damage,isHeal);
+        //this.getName() = name;
         switch (name) {
             case "eagle":
-                this.damage = 1;
+                damage = 1;
                 break;
             case "wolf":
-                this.damage = 2;
+                damage = 2;
                 break;
             case "bear":
-                this.damage = 3;
+                damage = 3;
                 break;
             default:
-                this.damage = 0;
+                damage = 0;
                 break;
         }
     }
 
-    public int Dammages(){
-        return this.damage;
-    }
 
-    public String Name(){
-        return this.name;
-    }
 }
