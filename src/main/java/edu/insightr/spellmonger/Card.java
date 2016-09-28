@@ -32,4 +32,5 @@ public abstract class Card {
     public boolean getIsHeal() {
         return isHeal;
     }
+    // Juste pour corriger erreur avec une branche ..
 }
