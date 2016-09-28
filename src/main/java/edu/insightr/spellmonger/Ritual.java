@@ -6,17 +6,15 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
  * Created by Aurélie on 21/09/2016.
  * Used to define rituals and what they do
  */
-public class Ritual extends Card {
-    private String name;
-    private int damage;
+class Ritual extends Card {
     private boolean isHeal;
 
     /**
      * Constructor
      * @param name curse or blessing
      */
-    public Ritual(String name){
-        this.name = name;
+    Ritual(String name){
+        super(name);
         this.damage = 3;
         this.isHeal = (name.equals("blessing"));
     }
@@ -25,7 +23,4 @@ public class Ritual extends Card {
         return this.isHeal;
     }
 
-    public String Name() {
-        return this.name;
-    }
 }
