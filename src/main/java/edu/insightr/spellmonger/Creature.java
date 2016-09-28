@@ -20,6 +20,7 @@ public class Creature extends Card{
                 this.damage = 1;
                 break;
             case "wolf":
+
                 this.damage = 2;
                 break;
             case "bear":
