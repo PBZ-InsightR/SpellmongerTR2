@@ -1,6 +1,7 @@
 package edu.insightr.spellmonger;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.pattern.IntegerPatternConverter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,22 +21,26 @@ public class SpellmongerApp {
         playersLifePoints.put("Bob", 20);
         playersCreature.put("Alice", 0);
         playersCreature.put("Bob", 0);
-        // on cr?e des variables qui serviront de r?f?rences, pour ne pas r??crire inutilement du code
+        // on crée des variables qui serviront de références, pour ne pas réécrire inutilement du code
         int modulo = 6;
         int nbrRitual = 2;
         int nbrCreature = 3;
 
-        
-        // modification du code pr?c?dent, j'ai chang? la g?n?ration du deck.
-        // un modulo simple qui d?termine si c'est une cr?ature ou un blesing, et qui ajoute de fa?on ?gale chaque carte
+
+        // modification du code précédent, j'ai changé la génération du deck.
+        // un modulo simple qui détermine si c'est une cr?ature ou un blesing, et qui ajoute de fa?on ?gale chaque carte
         // (1 rituel sur 2 est curse l'autre blessing
         // (1 monstre sur 3 est aigle/wolf/bear)
         for (int i = 0; i < 70; i++) {
             if (i % modulo == 0) {
                 // ritual
                 switch (i % (modulo * nbrRitual)) {
-                    case 0:   cardPool.add(new Curse()); break;
-                    case 1 : cardPool.add(new Blessing()); break;
+                    case 0:
+                        cardPool.add(new Curse());
+                        break;
+                    case 1:
+                        cardPool.add(new Blessing());
+                        break;
                 }
             } else {
                 // creature
@@ -102,6 +107,8 @@ public class SpellmongerApp {
         /*28.09 : not functionning ! name is never "creature" or "ritual" ...
          if ritual
          * */
+
+
         if ("eagle".equalsIgnoreCase(cardPool.get(currentCardNumber).getName())) {
             logger.info(currentPlayer.getName() + " draw a Creature");
             playersCreature.put(currentPlayer.getName(), playersCreature.get(currentPlayer.getName()) + 1);
