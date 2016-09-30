@@ -99,28 +99,28 @@ public class SpellmongerApp {
 
     private void drawACard(Player currentPlayer, Player opponent, int currentCardNumber) {
 
-        /*28.09 : not functionning ! name is never "creature" or "ritual" ...
-         if ritual
-         * */
-        if ("eagle".equalsIgnoreCase(cardPool.get(currentCardNumber).getName())) {
-            logger.info(currentPlayer.getName() + " draw a Creature");
-            playersCreature.put(currentPlayer.getName(), playersCreature.get(currentPlayer.getName()) + 1);
-            int nbCreatures = playersCreature.get(currentPlayer.getName());
-            if (nbCreatures > 0) {
-                playersLifePoints.put(opponent.getName(), (playersLifePoints.get(opponent.getName()) - nbCreatures));
-                logger.info("The " + nbCreatures + " creatures of " + currentPlayer.getName() + " attack and deal " + nbCreatures + " damages to its opponent");
-            }
+        String nameType = cardPool.get(currentCardNumber).getName();
+        switch(nameType){
+            case "Eagle" :
+            case "Bear" :
+            case "Wolf" :
+                logger.info(currentPlayer.getName() + " draw a Creature : " + cardPool.get(currentCardNumber).getName());
+                playersCreature.put(currentPlayer.getName(), playersCreature.get(currentPlayer.getName()) + 1);
+                currentPlayer.getDeck().addCard(cardPool.get(currentCardNumber));
+                break;
+
+            case "Blessing" :
+                logger.info(currentPlayer.getName() + " draw a Blessing");
+                playersLifePoints.put(opponent.getName(), (playersLifePoints.get(currentPlayer.getName()) + 3));
+                break;
+
+            case "Curse" :
+                logger.info(currentPlayer.getName() + " draw a Curse");
+                playersLifePoints.put(opponent.getName(), (playersLifePoints.get(opponent.getName()) - 3));
+                break;
         }
-        if ("curse".equalsIgnoreCase(cardPool.get(currentCardNumber).getName())) {
-            logger.info(currentPlayer.getName() + " draw a Ritual");
-            int nbCreatures = playersCreature.get(currentPlayer.getName());
-            playersLifePoints.put(opponent.getName(), (playersLifePoints.get(opponent.getName()) - 3));
-            if (nbCreatures > 0) {
-                playersLifePoints.put(opponent.getName(), (playersLifePoints.get(opponent.getName()) - nbCreatures));
-                logger.info("The " + nbCreatures + " creatures of " + currentPlayer.getName() + " attack and deal " + nbCreatures + " damages to its opponent");
-            }
-            logger.info(currentPlayer.getName() + " cast a ritual that deals 3 damages to " + opponent.getName());
-        }
+        playersLifePoints.put(opponent.getName(), (playersLifePoints.get(opponent.getName()) - currentPlayer.getDeck().getDamages()));
+        logger.info("The " + currentPlayer.getDeck().getSize() + " creatures of " + currentPlayer.getName() + " attack and deal " + currentPlayer.getDeck().getDamages() + " damages to its opponent");
     }
 
 }
