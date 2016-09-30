@@ -112,14 +112,17 @@ public class SpellmongerApp {
             case "Blessing" :
                 logger.info(currentPlayer.getName() + " draw a Blessing");
                 playersLifePoints.put(opponent.getName(), (playersLifePoints.get(currentPlayer.getName()) + 3));
+                currentPlayer.setHealthPoint(3);
                 break;
 
             case "Curse" :
                 logger.info(currentPlayer.getName() + " draw a Curse");
                 playersLifePoints.put(opponent.getName(), (playersLifePoints.get(opponent.getName()) - 3));
+                opponent.setHealthPoint(-3);
                 break;
         }
         playersLifePoints.put(opponent.getName(), (playersLifePoints.get(opponent.getName()) - currentPlayer.getDeck().getDamages()));
+        opponent.setHealthPoint(currentPlayer.getDeck().getDamages());
         logger.info("The " + currentPlayer.getDeck().getSize() + " creatures of " + currentPlayer.getName() + " attack and deal " + currentPlayer.getDeck().getDamages() + " damages to its opponent");
     }
 
