@@ -9,11 +9,14 @@ abstract class Creature extends Card {
 
     private final int damage;
 
-    //changement par rapport ? avant, la classe cr?ature est une classe interm?diaire
-    //la cr?ature en question ainsi que les d?gats seront d?finis via l'h?ritage. 
+    //changement par rapport à avant, la classe créature est une classe interm?diaire
+    //la créature en question ainsi que les d?gats seront d?finis via l'héritage.
     Creature(String name, int damage) {
         super(name);
         this.damage = damage;
     }
 
+    public int getDamages() {
+        return damage;
+    }
 }

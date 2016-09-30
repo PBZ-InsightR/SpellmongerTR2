@@ -6,36 +6,36 @@ import java.util.ArrayList;
  * Used to have a deck by player
  * Created by Aurélie on 28/09/2016.
  */
+
 class Player {
 
-    private ArrayList<Card> deck;
+    private Deck deck;
     private String name;
+    private int healthPoint;
 
-    Player(String name){
+    Player(String name, int healthPoint){
         this.name = name;
-        this.deck = new ArrayList<>(35);
-        /*for(int i = 0; i < 35; i++){
-            if(i%6 == 0){
-
-                //deck.add(new Card());
-            }
-        }*/
-
+        this.deck = new Deck();
+        this.healthPoint = healthPoint;
     }
 
-    private ArrayList<Card> getDeck(){
+
+    public Deck getDeck() {
         return this.deck;
     }
 
-    public Card getCard(int position){
-        return this.deck.get(position);
+    public int getHealthPoint() {
+        return healthPoint;
     }
 
-    public void discard(int currentCardNumber) {
-        this.getDeck().remove(currentCardNumber);
-    }
 
     String getName(){
         return this.name;
     }
+
+    public void addCreature(Creature c) {
+        this.getDeck().addCard(c);
+    }
+
+
 }
