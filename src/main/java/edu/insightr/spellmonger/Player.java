@@ -20,12 +20,16 @@ class Player {
     }
 
 
-    public Deck getDeck() {
+    Deck getDeck() {
         return this.deck;
     }
 
-    public int getHealthPoint() {
+    private int getHealthPoint() {
         return healthPoint;
+    }
+
+    public void setHealthPoint(int delta){
+        this.healthPoint = this.getHealthPoint() - delta;
     }
 
 
