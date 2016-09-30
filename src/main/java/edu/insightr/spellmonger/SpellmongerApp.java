@@ -59,8 +59,8 @@ public class SpellmongerApp {
         SpellmongerApp app = new SpellmongerApp();
 
         boolean onePlayerDead = false;
-        Player currentPlayer = new Player("Alice");
-        Player opponent = new Player("Bob");
+        Player currentPlayer = new Player("Alice", 20);
+        Player opponent = new Player("Bob", 20);
         int currentCardNumber = 0;
         int roundCounter = 1;
         Player winner = null;
