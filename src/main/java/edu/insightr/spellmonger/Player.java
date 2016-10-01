@@ -6,29 +6,40 @@ import java.util.ArrayList;
  * Used to have a deck by player
  * Created by Aurélie on 28/09/2016.
  */
+
 class Player {
 
-    private ArrayList<Card> deck;
+    private Deck deck;
     private String name;
+    private int healthPoint;
 
-    Player(String name){
+    Player(String name, int healthPoint){
         this.name = name;
-        this.deck = new ArrayList<>();
+        this.deck = new Deck();
+        this.healthPoint = healthPoint;
     }
 
-    private ArrayList<Card> getDeck(){
+
+    Deck getDeck() {
         return this.deck;
     }
 
-    public Card getCard(int position){
-        return this.deck.get(position);
+    private int getHealthPoint() {
+        return healthPoint;
     }
 
-    public void discard(int currentCardNumber) {
-        this.getDeck().remove(currentCardNumber);
+    public void setHealthPoint(int delta){
+        this.healthPoint = this.getHealthPoint() - delta;
     }
+
 
     String getName(){
         return this.name;
     }
+
+    public void addCreature(Creature c) {
+        this.getDeck().addCard(c);
+    }
+
+
 }

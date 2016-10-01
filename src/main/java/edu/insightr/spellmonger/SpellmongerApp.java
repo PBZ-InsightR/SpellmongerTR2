@@ -1,6 +1,7 @@
 package edu.insightr.spellmonger;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.pattern.IntegerPatternConverter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SpellmongerApp {
+
     private static final Logger logger = Logger.getLogger(SpellmongerApp.class);
 
     private Map<String, Integer> playersLifePoints = new HashMap<>(2);
@@ -19,20 +21,40 @@ public class SpellmongerApp {
         playersLifePoints.put("Bob", 20);
         playersCreature.put("Alice", 0);
         playersCreature.put("Bob", 0);
-        int ritualMod = 3;
+        // on crée des variables qui serviront de références, pour ne pas réécrire inutilement du code
+        int modulo = 6;
+        int nbrRitual = 2;
+        int nbrCreature = 3;
 
+
+        // modification du code précédent, j'ai changé la génération du deck.
+        // un modulo simple qui détermine si c'est une cr?ature ou un blesing, et qui ajoute de fa?on ?gale chaque carte
+        // (1 rituel sur 2 est curse l'autre blessing
+        // (1 monstre sur 3 est aigle/wolf/bear)
         for (int i = 0; i < 70; i++) {
-            if (i % ritualMod == 0) {
-                cardPool.add(new Ritual("curse"));
-            }
-            if (i % ritualMod != 0) {
-                cardPool.add(new Creature("eagle"));
-            }
-
-            if (ritualMod == 3) {
-                ritualMod = 2;
+            if (i % modulo == 0) {
+                // ritual
+                switch (i % (modulo * nbrRitual)) {
+                    case 0:
+                        cardPool.add(new Curse());
+                        break;
+                    case 1:
+                        cardPool.add(new Blessing());
+                        break;
+                }
             } else {
-                ritualMod = 3;
+                // creature
+                switch (i % (modulo * nbrCreature)) {
+                    case 0:
+                        cardPool.add(new Eagle());
+                        break;
+                    case 1:
+                        cardPool.add(new Wolf());
+                        break;
+                    case 2:
+                        cardPool.add(new Bear());
+                        break;
+                }
             }
 
         }
@@ -42,8 +64,8 @@ public class SpellmongerApp {
         SpellmongerApp app = new SpellmongerApp();
 
         boolean onePlayerDead = false;
-        Player currentPlayer = new Player("Alice");
-        Player opponent = new Player("Bob");
+        Player currentPlayer = new Player("Alice", 20);
+        Player opponent = new Player("Bob", 20);
         int currentCardNumber = 0;
         int roundCounter = 1;
         Player winner = null;
@@ -78,33 +100,35 @@ public class SpellmongerApp {
         logger.info("THE WINNER IS " + winner.getName() + " !!!");
         logger.info("******************************");
 
-
     }
 
     private void drawACard(Player currentPlayer, Player opponent, int currentCardNumber) {
 
-        /*28.09 : not functionning ! name is never "creature" or "ritual" ...
-        if ritual
-        * */
-        if ("eagle".equalsIgnoreCase(cardPool.get(currentCardNumber).getName())) {
-            logger.info(currentPlayer.getName() + " draw a Creature");
-            playersCreature.put(currentPlayer.getName(), playersCreature.get(currentPlayer.getName()) + 1);
-            int nbCreatures = playersCreature.get(currentPlayer.getName());
-            if (nbCreatures > 0) {
-                playersLifePoints.put(opponent.getName(), (playersLifePoints.get(opponent.getName()) - nbCreatures));
-                logger.info("The " + nbCreatures + " creatures of " + currentPlayer.getName() + " attack and deal " + nbCreatures + " damages to its opponent");
-            }
+        String nameType = cardPool.get(currentCardNumber).getName();
+        switch(nameType){
+            case "Eagle" :
+            case "Bear" :
+            case "Wolf" :
+                logger.info(currentPlayer.getName() + " draw a Creature : " + cardPool.get(currentCardNumber).getName());
+                playersCreature.put(currentPlayer.getName(), playersCreature.get(currentPlayer.getName()) + 1);
+                currentPlayer.getDeck().addCard(cardPool.get(currentCardNumber));
+                break;
+
+            case "Blessing" :
+                logger.info(currentPlayer.getName() + " draw a Blessing");
+                playersLifePoints.put(opponent.getName(), (playersLifePoints.get(currentPlayer.getName()) + 3));
+                currentPlayer.setHealthPoint(3);
+                break;
+
+            case "Curse" :
+                logger.info(currentPlayer.getName() + " draw a Curse");
+                playersLifePoints.put(opponent.getName(), (playersLifePoints.get(opponent.getName()) - 3));
+                opponent.setHealthPoint(-3);
+                break;
         }
-        if ("curse".equalsIgnoreCase(cardPool.get(currentCardNumber).getName())) {
-            logger.info(currentPlayer.getName() + " draw a Ritual");
-            int nbCreatures = playersCreature.get(currentPlayer.getName());
-            if (nbCreatures > 0) {
-                playersLifePoints.put(opponent.getName(), (playersLifePoints.get(opponent.getName()) - nbCreatures - 3));
-                logger.info("The " + nbCreatures + " creatures of " + currentPlayer.getName() + " attack and deal " + nbCreatures + " damages to its opponent");
-            }
-            logger.info(currentPlayer.getName() + " cast a ritual that deals 3 damages to " + opponent);
-        }
+        playersLifePoints.put(opponent.getName(), (playersLifePoints.get(opponent.getName()) - currentPlayer.getDeck().getDamages()));
+        opponent.setHealthPoint(currentPlayer.getDeck().getDamages());
+        logger.info("The " + currentPlayer.getDeck().getSize() + " creatures of " + currentPlayer.getName() + " attack and deal " + currentPlayer.getDeck().getDamages() + " damages to its opponent");
     }
 
 }
-
