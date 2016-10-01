@@ -1,141 +1,193 @@
 package edu.insightr.spellmonger;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.pattern.IntegerPatternConverter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Collections;
+import java.util.*;
 
 public class SpellmongerApp {
 
     private static final Logger logger = Logger.getLogger(SpellmongerApp.class);
 
-    private Map<String, Integer> playersLifePoints = new HashMap<>(2);
-    private Map<String, Integer> playersCreature = new HashMap<>(2);
-    private List<Card> cardPool = new ArrayList<>(70);
+    private ArrayList<Card> cardPool;   // cards stack for the game
+    private ArrayList<Card> graveyard;  // cards trash
+    private ArrayList<Player> players = new ArrayList<Player>();    // list of players
+    private ArrayList<Player> eliminated = new ArrayList<Player>(); // for eliminated players
 
-    private SpellmongerApp() {
-        playersLifePoints.put("Alice", 20);
-        playersLifePoints.put("Bob", 20);
-        playersCreature.put("Alice", 0);
-        playersCreature.put("Bob", 0);
+    private int roundCounter = 0;   // game round
+    private int currentPlayer;
+
+
+    private SpellmongerApp(int nbrCards) {
+
+        // creation des structures
+        cardPool = new ArrayList<Card>();
+        graveyard = new ArrayList<Card>();
+
         // on crée des variables qui serviront de références, pour ne pas réécrire inutilement du code
         int modulo = 6;
         int nbrRitual = 2;
         int nbrCreature = 3;
 
-
         // modification du code précédent, j'ai changé la génération du deck.
         // un modulo simple qui détermine si c'est une cr?ature ou un blesing, et qui ajoute de fa?on ?gale chaque carte
-        // *1 rituel sur 2 est curse l'autre blessing
-        // *1 monstre sur 3 est aigle/wolf/bear)
-        //
-        // A la fin on utilise la methode void shuffle(List) de la classe Collections pour réordonner tous les éléments
-        // de la liste de façon aléatoire
-        for (int i = 0; i < 70; i++) {
+        // (1 rituel sur 2 est curse l'autre blessing
+        // (1 monstre sur 3 est aigle/wolf/bear)
+        for (int i = 0; i < nbrCards; i++) {
             if (i % modulo == 0) {
                 // ritual
-                switch (i % (modulo * nbrRitual)) {
+                switch (i % nbrRitual) {
                     case 0:
-                        cardPool.add(new Curse());
+                        cardPool.add(new Ritual("Curse", -3));
                         break;
                     case 1:
-                        cardPool.add(new Blessing());
+                        cardPool.add(new Ritual("Blessing", 3));
                         break;
                 }
             } else {
                 // creature
-                switch (i % (modulo * nbrCreature)) {
+                switch (i % nbrCreature) {
                     case 0:
-                        cardPool.add(new Eagle());
+                        cardPool.add(new Creature("Eagle", 1));
                         break;
                     case 1:
-                        cardPool.add(new Wolf());
+                        cardPool.add(new Creature("Wolf", 2));
                         break;
                     case 2:
-                        cardPool.add(new Bear());
+                        cardPool.add(new Creature("Bear", 3));
                         break;
                 }
             }
-
         }
-        Collections.shuffle(cardPool);//réordonner tous les éléments de la liste de façon aléatoire
+
+        logger.info("cardPool size : " + cardPool.size());
+
+        // shuffle the cards list
+        Collections.shuffle(cardPool);
+
     }
 
+    /**
+     * Return TRUE if the winner is found
+     *
+     * @return boolean
+     */
+    private void checkPlayers() {
+        ArrayList<Player> keep = new ArrayList<Player>(); // players to keep in play
+        // check all players
+        for (Player p : players) {
+            if (p.getHealthPoint() > 0) {
+                keep.add(p);
+            } else {
+                logger.info("* Player " + p.getName() + " is eliminated !");
+                eliminated.add(p);
+            }
+        }
+        players = keep;
+    }
+
+
+    private void nextRound() {
+        roundCounter++;
+        if (++currentPlayer >= players.size()) currentPlayer = 0;
+    }
+
+    /**
+     * methode principale
+     *
+     * @param args
+     */
     public static void main(String[] args) {
-        SpellmongerApp app = new SpellmongerApp();
 
-        boolean onePlayerDead = false;
-        Player currentPlayer = new Player("Alice", 20);
-        Player opponent = new Player("Bob", 20);
-        int currentCardNumber = 0;
-        int roundCounter = 1;
-        Player winner = null;
+        SpellmongerApp app = new SpellmongerApp(70);
 
-        while (!onePlayerDead) {
-            logger.info("\n");
-            logger.info("***** ROUND " + roundCounter);
+        int START_HP = 150;
 
-            app.drawACard(currentPlayer, opponent, currentCardNumber);
+        // ajout des joueurs a la partie
+        app.players.add(new Player("Alf", START_HP));
+        app.players.add(new Player("Bob", START_HP));
+        app.players.add(new Player("Cid", START_HP));
+        app.players.add(new Player("Don", START_HP));
 
-            logger.info(opponent.getName() + " has " + app.playersLifePoints.get(opponent.getName()) + " life points and " + currentPlayer.getName() + " has " + app.playersLifePoints.get(currentPlayer.getName()) + " life points ");
+        // randomize starting player
+        app.currentPlayer = (int) Math.floor(Math.random() * app.players.size());
 
-            if (app.playersLifePoints.get(currentPlayer.getName()) <= 0) {
-                winner = opponent;
-                onePlayerDead = true;
-            }
-            if (app.playersLifePoints.get(opponent.getName()) <= 0) {
-                winner = currentPlayer;
-                onePlayerDead = true;
-            }
+        // main game loop
+        while (app.players.size() > 1) {
 
-            Player temp = currentPlayer;
-            currentPlayer = opponent;
-            opponent = temp;
+            // play one round
+            app.drawACard();
 
-            currentCardNumber++;
-            roundCounter++;
+            // elimination
+            app.checkPlayers();
+
+            // display game status
+            app.displayPlayers();
+
+            // prepare for next round
+            app.nextRound();
+
         }
 
         logger.info("\n");
-        logger.info("******************************");
-        logger.info("THE WINNER IS " + winner.getName() + " !!!");
-        logger.info("******************************");
+        logger.info("********************************************");
+        logger.info("THE WINNER IS " + app.players.get(0).getName() + " ! ");
+        logger.info("********************************************");
 
     }
 
-    private void drawACard(Player currentPlayer, Player opponent, int currentCardNumber) {
 
-        String nameType = cardPool.get(currentCardNumber).getName();
-        switch(nameType){
-            case "Eagle" :
-            case "Bear" :
-            case "Wolf" :
-                logger.info(currentPlayer.getName() + " draw a Creature : " + cardPool.get(currentCardNumber).getName());
-                playersCreature.put(currentPlayer.getName(), playersCreature.get(currentPlayer.getName()) + 1);
-                currentPlayer.getDeck().addCard(cardPool.get(currentCardNumber));
-                break;
+    private void drawACard() {
 
-            case "Blessing" :
-                logger.info(currentPlayer.getName() + " draw a Blessing");
-                playersLifePoints.put(opponent.getName(), (playersLifePoints.get(currentPlayer.getName()) + 3));
-                currentPlayer.setHealthPoint(3);
-                break;
+        logger.info("\n");
+        logger.info("Playing round " + roundCounter);
 
-            case "Curse" :
-                logger.info(currentPlayer.getName() + " draw a Curse");
-                playersLifePoints.put(opponent.getName(), (playersLifePoints.get(opponent.getName()) - 3));
-                opponent.setHealthPoint(-3);
-                break;
+        // get the player
+        Player curPlayer = players.get(currentPlayer);
+        Card curCard;
+
+        if (cardPool.size() > 0) {
+            // take the first card out of stack
+            curCard = cardPool.remove(0); // remove gets the card out of stack !
+        } else {
+            // no more cards in stack : using a special card Exhaust
+            curCard = new Ritual("Exhaust", 0);
         }
-        playersLifePoints.put(opponent.getName(), (playersLifePoints.get(opponent.getName()) - currentPlayer.getDeck().getDamages()));
-        opponent.setHealthPoint(currentPlayer.getDeck().getDamages());
-        logger.info("The " + currentPlayer.getDeck().getSize() + " creatures of " + currentPlayer.getName() + " attack and deal " + currentPlayer.getDeck().getDamages() + " damages to its opponent");
+
+        logger.info("Player " + curPlayer.getName() + " plays " + curCard.getName());
+
+        // apply heal to player (if any)
+        // note : Creature cards returns 0 heal
+        curPlayer.setHealthPoint(curCard.getHeal());
+        logger.info("Player " + curPlayer.getName() + " is healed for " + curCard.getHeal() + " points");
+
+        // apply card + deck damages to other player
+        for (Player p : players) {
+            if (p != curPlayer) {
+                int damCard = curCard.getDamages();
+                int damDeck = curPlayer.getDeckDamages();
+                // apply damages card + deck
+                // note : Blessing cards return 0 damages, others cards do
+                p.setHealthPoint(- (damCard + damDeck));
+                logger.info("Player " + p.getName() + " is damaged for " + damCard + " + " + damDeck + " points");
+            }
+        }
+
+        // add card to player's deck or discard it
+        if (!curPlayer.addCardToDeck(curCard)) {
+            // add card to trash
+            graveyard.add(curCard);
+        }
+
     }
 
-
+    /**
+     * display list of players with HP
+     */
+    private void displayPlayers() {
+        logger.info("Players status summary :");
+        for (Player p : players) {
+            logger.info("- Player " + p.getName() + " : health = " + p.getHealthPoint());
+        }
+    }
 
 }
