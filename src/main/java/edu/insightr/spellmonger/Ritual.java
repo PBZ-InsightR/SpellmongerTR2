@@ -3,14 +3,13 @@ package edu.insightr.spellmonger;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 /**
- * Update by Rodolphe on 29/09/2016. 
+ * Update by Rodolphe on 29/09/2016.
  * Used to define rituals and what they do
- * le rituel est une classe interm?diare.
- * le type de rituel et ses d?gats (ou soins) sont d?finis via l'h?ritage.
+ * le rituel est une classe intermediare.
  */
-class Ritual extends Card {
+public class Ritual extends Card {
 
-    //servira a dire le diff?rentiel de d?gats du rituel (+3 ou -3)
+    //servira a dire le differentiel de degats du rituel (+3 ou -3)
     private final int deltaPoints;
 
     /**
@@ -20,20 +19,27 @@ class Ritual extends Card {
      */
     Ritual(String name, int delta) {
         super(name);
-        this.deltaPoints = delta;
+        deltaPoints = delta;
     }
 
-    private int getDeltaPoints() {
+    protected int getDeltaPoints() {
         return deltaPoints;
     }
-    
+
     public boolean isHeal() {
         return (getDeltaPoints() > 0);
     }
-    
+
     public boolean isDamage() {
         return (getDeltaPoints() < 0);
     }
-    
+
+    public int getDamages() {
+        return (isHeal() ? 0 : -(getDeltaPoints()));
+    }
+
+    public int getHeal() {
+        return (isHeal() ? getDeltaPoints() : 0);
+    }
 
 }

@@ -5,12 +5,10 @@ package edu.insightr.spellmonger;
  * do
  * Update by Rodolphe on 29/09/2016.
  */
-abstract class Creature extends Card {
+public class Creature extends Card {
 
     private final int damage;
 
-    //changement par rapport à avant, la classe créature est une classe interm?diaire
-    //la créature en question ainsi que les d?gats seront d?finis via l'héritage.
     Creature(String name, int damage) {
         super(name);
         this.damage = damage;
@@ -19,4 +17,6 @@ abstract class Creature extends Card {
     public int getDamages() {
         return damage;
     }
+    public int getHeal() { return 0; }
+
 }

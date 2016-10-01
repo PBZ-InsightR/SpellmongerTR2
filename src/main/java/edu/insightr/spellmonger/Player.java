@@ -13,33 +13,29 @@ class Player {
     private String name;
     private int healthPoint;
 
-    Player(String name, int healthPoint){
+    Player(String name, int healthPoint) {
         this.name = name;
-        this.deck = new Deck();
         this.healthPoint = healthPoint;
+        deck = new Deck();
     }
 
-
-    Deck getDeck() {
-        return this.deck;
-    }
-
-    private int getHealthPoint() {
+    public int getHealthPoint() {
         return healthPoint;
     }
 
-    public void setHealthPoint(int delta){
-        this.healthPoint = this.getHealthPoint() - delta;
+    public int getDeckDamages() {
+        return deck.getDamages();
     }
 
-
-    String getName(){
-        return this.name;
+    public void setHealthPoint(int delta) {
+        healthPoint = getHealthPoint() + delta;
     }
 
-    public void addCreature(Creature c) {
-        this.getDeck().addCard(c);
+    String getName() {
+        return name;
     }
 
-
+    public boolean addCardToDeck(Card c) {
+        return deck.addCard(c);
+    }
 }

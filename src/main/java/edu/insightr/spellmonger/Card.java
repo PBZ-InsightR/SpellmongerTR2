@@ -16,5 +16,9 @@ public abstract class Card {
     String getName(){
         return this.name;
     }
-    
+
+    public abstract int getDamages();
+    public abstract int getHeal();
+
+
 }
