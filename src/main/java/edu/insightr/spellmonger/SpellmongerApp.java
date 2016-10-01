@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Collections;
 
 public class SpellmongerApp {
 
@@ -29,8 +30,11 @@ public class SpellmongerApp {
 
         // modification du code précédent, j'ai changé la génération du deck.
         // un modulo simple qui détermine si c'est une cr?ature ou un blesing, et qui ajoute de fa?on ?gale chaque carte
-        // (1 rituel sur 2 est curse l'autre blessing
-        // (1 monstre sur 3 est aigle/wolf/bear)
+        // *1 rituel sur 2 est curse l'autre blessing
+        // *1 monstre sur 3 est aigle/wolf/bear)
+        //
+        // A la fin on utilise la methode void shuffle(List) de la classe Collections pour réordonner tous les éléments
+        // de la liste de façon aléatoire
         for (int i = 0; i < 70; i++) {
             if (i % modulo == 0) {
                 // ritual
@@ -58,6 +62,7 @@ public class SpellmongerApp {
             }
 
         }
+        Collections.shuffle(cardPool);//réordonner tous les éléments de la liste de façon aléatoire
     }
 
     public static void main(String[] args) {
@@ -130,5 +135,7 @@ public class SpellmongerApp {
         opponent.setHealthPoint(currentPlayer.getDeck().getDamages());
         logger.info("The " + currentPlayer.getDeck().getSize() + " creatures of " + currentPlayer.getName() + " attack and deal " + currentPlayer.getDeck().getDamages() + " damages to its opponent");
     }
+
+
 
 }
