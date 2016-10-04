@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 /**
  * Created by Jessica on 03/10/2016.
- * Used to test class Desk
+ * Test methods of class Desk
  */
 public class DeckTest {
 
@@ -15,28 +15,28 @@ public class DeckTest {
     private Card cardR = new Ritual("Curse", -3);
 
     @Test
-    public void addCard() throws Exception {
+    public void testAddCard() throws Exception {
         assertTrue(deck.addCard(cardC));
         assertFalse(deck.addCard(cardR));
     }
 
     @Test
-    public void removeCard() throws Exception {
+    public void testRemoveCard() throws Exception {
         /* dans la class Deck:
         public boolean removeCard(Card c) {return cards.remove(c);}
         méthode booléenne, pourtant on ne retroune pas de true/false (?)
          */
-        //assertFalse(deck.removeCard(cardR)); // doit retourner true et non false
+        assertFalse(deck.removeCard(cardR)); // doit retourner true et non false
     }
 
     @Test
-    public void getDamages() throws Exception {
+    public void testGetDamages() throws Exception {
         deck.addCard(cardC);
         assertEquals(1, deck.getDamages());
     }
 
     @Test
-    public void getSize() throws Exception {
+    public void testGetSize() throws Exception {
         deck.addCard(cardC);
         assertEquals(1, deck.getSize());
     }

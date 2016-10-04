@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 /**
  * Created by Jessica on 03/10/2016.
- * Used to test class Player
+ * Test methods of class Player
  */
 public class PlayerTest {
 
@@ -16,29 +16,29 @@ public class PlayerTest {
     Card cardR = new Ritual("Curse", -3);
 
     @Test
-    public void getHealthPoint() throws Exception {
+    public void testGetHealthPoint() throws Exception {
         assertEquals(10, player.getHealthPoint());
     }
 
 /*
     @Test
-    public void getDeckDamages() throws Exception {
+    public void testGetDeckDamages() throws Exception {
         deck.addCard(cardC);
         int deck_damage=deck.getDamages();
         assertEquals(deck_damage, player.getDeckDamages());
     }
 
     @Test
-    public void setHealthPoint() throws Exception {
+    public void testSetHealthPoint() throws Exception {
     }
 */
     @Test
-    public void getName() throws Exception {
+    public void testGetName() throws Exception {
         assertEquals("A", player.getName());
     }
 /*
     @Test
-    public void addCardToDeck() throws Exception {
+    public void testAddCardToDeck() throws Exception {
     }
 */
 }
