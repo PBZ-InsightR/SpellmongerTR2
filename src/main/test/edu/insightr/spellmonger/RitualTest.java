@@ -6,34 +6,34 @@ import static org.junit.Assert.*;
 
 /**
  * Created by Jessica on 03/10/2016.
- * Used to test class Ritual
+ * Test methods of class Ritual
  */
 public class RitualTest {
     @Test
-    public void getDeltaPoints() throws Exception {
+    public void testGetDeltaPoints() throws Exception {
         Ritual ritual = new Ritual("Blessing", 3);
         assertEquals(3, ritual.getDeltaPoints());
     }
 
     @Test
-    public void isHeal() throws Exception {
+    public void testIsHeal() throws Exception {
         Ritual ritual = new Ritual("Blessing", 3);
         assertTrue(ritual.isHeal());
     }
 
     @Test
-    public void isDamage() throws Exception {
+    public void testIsDamage() throws Exception {
         Ritual ritual = new Ritual("Curse", -3);
         assertTrue(ritual.isDamage());
     }
 /*
     @Test
-    public void getDamages() throws Exception {
+    public void testGetDamages() throws Exception {
 
     }
 
     @Test
-    public void getHeal() throws Exception {
+    public void testGetHeal() throws Exception {
     }
 */
 }
