@@ -35,7 +35,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Tests Unitaires -->
 
     </dependencies>
     <build>
