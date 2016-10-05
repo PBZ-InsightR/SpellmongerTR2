@@ -1,8 +1,7 @@
 package edu.insightr.spellmonger;
 
-import java.util.ArrayList;
-
 /**
+ * @author Aurélie
  * Used to have a deck by player
  * Created by Aurélie on 28/09/2016.
  */

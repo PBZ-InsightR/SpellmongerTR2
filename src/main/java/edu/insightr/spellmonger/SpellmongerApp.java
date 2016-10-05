@@ -4,6 +4,11 @@ import org.apache.log4j.Logger;
 
 import java.util.*;
 
+/*
+Déporter SpellmongerApp, checkPlayers, drawACard, displayPlayers et nextRound
+dans une nouvelle classe Party ?
+ */
+
 public class SpellmongerApp {
 
     private static final Logger logger = Logger.getLogger(SpellmongerApp.class);
