@@ -1,8 +1,7 @@
 package edu.insightr.spellmonger;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 /**
+ * @author ???
  * Update by Rodolphe on 29/09/2016.
  * Used to define rituals and what they do
  * le rituel est une classe intermediare.
