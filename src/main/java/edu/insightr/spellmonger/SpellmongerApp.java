@@ -7,6 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/*
+Déporter SpellmongerApp, checkPlayers, drawACard, displayPlayers et nextRound
+dans une nouvelle classe Party ?
+ */
+
 public class SpellmongerApp {
 
     private static final Logger logger = Logger.getLogger(SpellmongerApp.class);

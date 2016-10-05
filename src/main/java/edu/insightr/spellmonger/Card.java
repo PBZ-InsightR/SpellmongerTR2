@@ -1,6 +1,7 @@
 package edu.insightr.spellmonger;
 
 /**
+ * @author Aurélie
  * Used to have a Card Deck no matter the card
  * Created by Aurélie on 28/09/2016.
  */
