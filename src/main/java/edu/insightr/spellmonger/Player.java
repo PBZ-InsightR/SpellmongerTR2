@@ -1,6 +1,7 @@
 package edu.insightr.spellmonger;
 
 /**
+ * @author Aurélie
  * Used to have a deck by player
  * Created by Aurélie on 28/09/2016.
  */

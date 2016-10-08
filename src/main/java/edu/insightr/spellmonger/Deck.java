@@ -3,6 +3,7 @@ package edu.insightr.spellmonger;
 import java.util.ArrayList;
 
 /**
+ * @author Rodolphe
  * Used to set Deck
  * Created by Rod on 30/09/2016.
  */
