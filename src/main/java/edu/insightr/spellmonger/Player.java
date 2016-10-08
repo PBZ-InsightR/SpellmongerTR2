@@ -8,25 +8,41 @@ package edu.insightr.spellmonger;
 
 class Player {
 
-    private Deck deck;
     private String name;
-    private int healthPoint;
+    private Deck hand = new Deck();
+    private int healthPoint = 0;
+    private boolean human;
 
-    Player(String name, int healthPoint) {
-        this.name = name;
-        this.healthPoint = healthPoint;
-        deck = new Deck();
+    public Player(String playerName, boolean isHuman) {
+        name = playerName;
+        human = isHuman;
+    }
+
+    public Player(String name) {
+        this(name, true);
     }
 
     public int getHealthPoint() {
         return healthPoint;
     }
 
-    public int getDeckDamages() {
-        return deck.getDamages();
+    public Deck getHand() {
+        return hand;
     }
 
-    public void setHealthPoint(int delta) {
+    public void setHealthPoint(int healthPoint) {
+        this.healthPoint = healthPoint;
+    }
+
+    public boolean isHuman() {
+        return human;
+    }
+
+    public boolean isIA() {
+        return !isHuman();
+    }
+
+    public void changeHealthPoints(int delta) {
         healthPoint = getHealthPoint() + delta;
     }
 
@@ -35,6 +51,7 @@ class Player {
     }
 
     public boolean addCardToDeck(Card c) {
-        return deck.addCard(c);
+        return hand.add(c);
     }
+
 }
