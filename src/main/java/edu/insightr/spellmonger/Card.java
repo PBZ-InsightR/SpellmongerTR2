@@ -19,6 +19,6 @@ public abstract class Card {
 
     public abstract int getDamages();
     public abstract int getHeal();
-
+    public abstract boolean isShield();
 
 }
