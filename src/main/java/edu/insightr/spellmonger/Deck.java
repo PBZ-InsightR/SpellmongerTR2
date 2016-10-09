@@ -7,36 +7,21 @@ import java.util.ArrayList;
  * Used to set Deck
  * Created by Rod on 30/09/2016.
  */
-class Deck {
-    private ArrayList<Card> cards;
+class Deck extends ArrayList<Card> {
 
-    Deck() {
-        cards = new ArrayList<Card>();
+    Deck() { super(); }
+
+    Deck(int size) { super(size); }
+
+    public Card draw() {
+        return remove(0);
     }
 
-    public boolean addCard(Card c) {
-        if (c instanceof Creature) {
-            cards.add(c);
-            return true;
-        } else return false;
-    }
-
-    public boolean removeCard(Card c) {
-        return cards.remove(c);
-    }
-
-    int getDamages() {
-        int total = 0;
-        for (Card c : cards) {
-            if (c instanceof Creature) {
-                total += ((Creature) c).getDamages();
-            }
+    public String toString() {
+        String s = "";
+        for (Card c : this) {
+            s += c.getName()+", ";
         }
-        return total;
+        return s;
     }
-
-    int getSize() {
-        return cards.size();
-    }
-
 }
