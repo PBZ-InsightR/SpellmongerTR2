@@ -7,6 +7,7 @@ import java.util.*;
 
 /**
  * Created by Rod on 07/10/2016.
+ * update by thomas 13/10/16 -> ajout de graveyard
  */
 public class Game {
     private static final Logger logger = Logger.getLogger(SpellmongerApp.class);
@@ -17,11 +18,13 @@ public class Game {
     private IA ia;      // the IA used for the game
     private final Map<String, Integer> tabCards = new HashMap<>();  // for cards repartition
     private Deck cardPool = new Deck();   // cards stack for the game
+    public static Deck graveyard= new Deck();//cards stack for cards alredy played
 
     private ArrayList<Player> players = new ArrayList<Player>();    // list of players
     private ArrayList<Player> eliminated = new ArrayList<Player>(); // for eliminated players
 
     private int roundCounter;   // game round
+
 
 
     public Game(Ihm theIhm, IA theIA) {
@@ -128,6 +131,8 @@ public class Game {
             }
             // sort la carte jouée de la main du joueur
             p.getHand().remove(c);
+            //on la rajoute a graveyard
+            graveyard.add(c);
             // attention : en cas de thread asynchrones, on va avoir un souci avec la position
             board.add(c);
         }
@@ -194,12 +199,6 @@ public class Game {
         }
     }
 
-
-    /**
-     * Return TRUE if the winner is found
-     *
-     * @return boolean
-     */
     private void checkPlayers() {
         ArrayList<Player> keep = new ArrayList<Player>(); // players to keep in play
         // check all players
