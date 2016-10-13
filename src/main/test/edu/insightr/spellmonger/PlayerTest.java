@@ -45,8 +45,9 @@ public class PlayerTest {
         assertEquals("A", player.getName());
     }
 
-    @Test
+    /*@Test
     public void testAddCardToDeck() throws Exception {
-    }
+        //need a method Deck.contains(Card)
+    }*/
 
 }
