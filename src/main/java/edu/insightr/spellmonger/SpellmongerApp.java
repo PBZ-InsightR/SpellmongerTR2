@@ -22,14 +22,16 @@ public class SpellmongerApp {
     /**
      * methode principale
      *
-     * @param args
+     * @param args : default
      */
     public static void main(String[] args) {
 
 
+        //Définition des interfaces
         IhmConsole ihm = new IhmConsole();
         IAttarde ia = new IAttarde();
 
+        //creating the game
         Game game = new Game(ihm, ia);
 
         // ajout des joueurs a la partie

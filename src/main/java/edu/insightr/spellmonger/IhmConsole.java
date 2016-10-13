@@ -5,9 +5,10 @@ import org.apache.log4j.Logger;
 import java.util.ArrayList;
 
 /**
+ * Used to define "human" player on console
  * Created by Rod on 07/10/2016.
  */
-public class IhmConsole extends Ihm {
+class IhmConsole extends Ihm {
     private static final Logger logger = Logger.getLogger(SpellmongerApp.class);
 
     public Card askForCard(Player p) {
