@@ -10,15 +10,6 @@ import static org.junit.Assert.*;
  */
 public class RitualTest {
 
-    /*
-    To test:
-    -getDeltaPoints
-    -isHeal
-    -isShield
-    -getDamages
-    -getHeal
-     */
-
     private Ritual ritual;
 
     @Test
