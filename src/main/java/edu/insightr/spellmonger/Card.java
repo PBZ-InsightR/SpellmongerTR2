@@ -3,35 +3,23 @@ package edu.insightr.spellmonger;
 /**
  * @author Aurélie
  * Used to have a Card Deck no matter the card
- * Created by Aurélie on 28/09/2016.
+ * Created by Aur?lie on 28/09/2016.
+ * update by Rodolphe on 29/09/2016.
  */
 public abstract class Card {
+    //la class Card sera la classe r?f?rence, comme on la d?rive en blessing ou creature, les damages se feront via l'h?ritage
+    private final String name;
 
-    private String name;
-    private int damage;
-    private boolean isHeal;
-    public Card(String name, int damage, boolean isHeal)
-    {
-
+    public Card(String name){
         this.name = name;
-        this.damage = damage;
-        this.isHeal = isHeal;
     }
 
-    public Card()
-    {
-
-    }
-
-    public int getDamage(){
-        return this.damage;
-    }
-
-    public String getName(){
+    String getName(){
         return this.name;
     }
-    public boolean getIsHeal() {
-        return isHeal;
-    }
-    // Juste pour corriger erreur avec une branche ..
+
+    public abstract int getDamages();
+    public abstract int getHeal();
+    public abstract boolean isShield();
+
 }

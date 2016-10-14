@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * @author Rodolphe
- * Used to set Deck
+ * Used to set Deck car
  * Created by Rod on 30/09/2016.
  */
 class Deck extends ArrayList<Card> {
@@ -13,7 +13,7 @@ class Deck extends ArrayList<Card> {
 
     Deck(int size) { super(size); }
 
-    public Card draw() {
+    Card draw() {
         return remove(0);
     }
 
