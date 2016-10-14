@@ -5,7 +5,6 @@ import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
 import java.util.HashMap;
 import java.util.Map;
-
 /**
  * Update by Rodolphe on 29/09/2016.
  * Used to define rituals and what they do

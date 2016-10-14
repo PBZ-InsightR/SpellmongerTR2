@@ -1,5 +1,6 @@
 package edu.insightr.spellmonger;
 
+
 /**
  * @author Aurélie
  * Used to have a deck by player

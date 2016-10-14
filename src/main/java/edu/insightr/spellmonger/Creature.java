@@ -1,5 +1,6 @@
 package edu.insightr.spellmonger;
 
+
 /**
  * @author Aurélie
  * Created by Aur?lie on 21/09/2016. Used to define creatures and damages they

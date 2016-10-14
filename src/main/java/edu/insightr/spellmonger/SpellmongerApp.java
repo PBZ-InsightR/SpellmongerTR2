@@ -1,15 +1,20 @@
 package edu.insightr.spellmonger;
 
 import org.apache.log4j.Logger;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-import java.util.*;
+
 
 /*
 Déporter SpellmongerApp, checkPlayers, drawACard, displayPlayers et nextRound
 dans une nouvelle classe Party ?
  */
 
-public class SpellmongerApp {
+public class SpellmongerApp{
 
     private static final Logger logger = Logger.getLogger(SpellmongerApp.class);
 
@@ -24,6 +29,7 @@ public class SpellmongerApp {
      *
      * @param args : default
      */
+
     public static void main(String[] args) {
 
 
