@@ -9,24 +9,34 @@ import static org.junit.Assert.*;
  * Test methods of class Ritual
  */
 public class RitualTest {
+
+    /*
+    To test:
+    -getDeltaPoints
+    -isHeal
+    -isShield
+    -getDamages
+    -getHeal
+     */
+
+    private Ritual ritual;
+
     @Test
     public void testGetDeltaPoints() throws Exception {
-        Ritual ritual = new Ritual("Blessing", 3);
-        assertEquals(3, ritual.getDeltaPoints());
+        ritual = new Ritual("Poison");
+        assertEquals(-3, ritual.getDeltaPoints());
     }
 
     @Test
     public void testIsHeal() throws Exception {
-        Ritual ritual = new Ritual("Blessing", 3);
-        assertTrue(ritual.isHeal());
+
     }
 
     @Test
-    public void testIsDamage() throws Exception {
-        Ritual ritual = new Ritual("Curse", -3);
-        assertTrue(ritual.isDamage());
+    public void testIsShield() throws Exception {
+
     }
-/*
+
     @Test
     public void testGetDamages() throws Exception {
 
@@ -34,6 +44,7 @@ public class RitualTest {
 
     @Test
     public void testGetHeal() throws Exception {
+
     }
-*/
+
 }
