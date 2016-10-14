@@ -1,9 +1,9 @@
 package edu.insightr.spellmonger;
 
+import org.junit.Before;
 import org.junit.Test;
-import edu.insightr.spellmonger.Player;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Jessica on 03/10/2016.
@@ -12,24 +12,40 @@ import static org.junit.Assert.*;
  */
 public class PlayerTest {
 
+    /*
+    To test:
+    -getHealthPoint
+    -getHand
+    -setHealthPoint
+    -isHuman
+    -isIA
+    -changeHealthPoints
+    -getName
+    -addCardToDeck
+     */
+
+    private Player player;
+    private Deck deck;
+    private Card cardC;
+    private Card cardR;
+    private int n;
+
     @Before
     public void initializeTests(){
-        private Player player = new Player("A", 10);
-        Deck deck = new Deck();
-        Card cardC = new Creature("Eagle", 1);
-        Card cardR = new Ritual("Curse", -3);
+        player = new Player("A");
+        deck = new Deck();
+        cardC = new Creature("Eagle");
+        cardR = new Ritual("Curse");
     }
 
     @Test
     public void testGetHealthPoint() throws Exception {
-        assertEquals(10, player.getHealthPoint());
+        assertEquals(0, player.getHealthPoint());
     }
 
     @Test
-    public void testGetDeckDamages() throws Exception {
-        deck.addCard(cardC);
-        player.addCardToDeck(cardC);
-        assert(player.getDeckDamages()==1);
+    public void testGetHand() throws Exception {
+
     }
 
     @Test
@@ -37,7 +53,22 @@ public class PlayerTest {
         //result is valuable onlyif testGetHealthPoint is not KO
         n=5;
         player.setHealthPoint(n);
-        assertEquals(10+n, player.getHealthPoint());
+        assertEquals(n, player.getHealthPoint());
+    }
+
+    @Test
+    public void testIsHuman() throws Exception {
+
+    }
+
+    @Test
+    public void testIsIA() throws Exception {
+
+    }
+
+    @Test
+    public void testChangeHealthPoints() throws Exception {
+
     }
 
     @Test
@@ -45,9 +76,9 @@ public class PlayerTest {
         assertEquals("A", player.getName());
     }
 
-    /*@Test
+    @Test
     public void testAddCardToDeck() throws Exception {
-        //need a method Deck.contains(Card)
-    }*/
+
+    }
 
 }

@@ -4,10 +4,11 @@ import java.util.*;
 
 
 /**
+ * Used to define intelligent IA (using a strategy)
  * Created by Rod on 08/10/2016.
  * update by thomas
  */
-public abstract class IA {
+abstract class IA {
     public abstract void cardsDistributed(Deck d, int pos);
     public abstract Card askForCard(Player p);
     /*public Card askForCard(Player p)

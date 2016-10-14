@@ -6,10 +6,10 @@ import org.apache.log4j.Logger;
 import java.util.*;
 
 /**
+ * Used to define game constants (such as hp, decks, ...)
  * Created by Rod on 07/10/2016.
- * update by thomas 13/10/16 -> ajout de graveyard
  */
-public class Game {
+class Game {
     private static final Logger logger = Logger.getLogger(SpellmongerApp.class);
 
     private final int START_HEALTHPOINTS = 20;    // starting health points for players
@@ -18,16 +18,14 @@ public class Game {
     private IA ia;      // the IA used for the game
     private final Map<String, Integer> tabCards = new HashMap<>();  // for cards repartition
     private Deck cardPool = new Deck();   // cards stack for the game
-    public static Deck graveyard= new Deck();//cards stack for cards alredy played
 
-    private ArrayList<Player> players = new ArrayList<Player>();    // list of players
-    private ArrayList<Player> eliminated = new ArrayList<Player>(); // for eliminated players
+    private ArrayList<Player> players = new ArrayList<>();    // list of players
+    private ArrayList<Player> eliminated = new ArrayList<>(); // for eliminated players
 
     private int roundCounter;   // game round
 
 
-
-    public Game(Ihm theIhm, IA theIA) {
+    Game(Ihm theIhm, IA theIA) {
         ihm = theIhm;
         ia = theIA;
         // initialize cards types & quantities
@@ -40,7 +38,7 @@ public class Game {
     }
 
 
-    public boolean addPlayer(Player p) {
+    boolean addPlayer(Player p) {
         return players.add(p);
     }
 
@@ -62,7 +60,7 @@ public class Game {
     }
 
 
-    public boolean Initialize() {
+    private boolean Initialize() {
         boolean bRes = false;
 
         roundCounter = 0;
@@ -107,7 +105,7 @@ public class Game {
     }
 
 
-    public void playRound() {
+    private void playRound() {
 
         nextRound();
 
@@ -121,7 +119,7 @@ public class Game {
         }
 
         // récupère les cartes jouées par chaque joueur
-        for (int pos = 0; pos < players.size(); pos++) {
+        for (int pos = 0; pos < players.size(); pos++){
             Player p = players.get(pos);
             Card c;
             if (p.isIA()) {
@@ -131,8 +129,6 @@ public class Game {
             }
             // sort la carte jouée de la main du joueur
             p.getHand().remove(c);
-            //on la rajoute a graveyard
-            graveyard.add(c);
             // attention : en cas de thread asynchrones, on va avoir un souci avec la position
             board.add(c);
         }
@@ -170,6 +166,7 @@ public class Game {
     private void matchCards(Card c1, Player p1, Card c2, Player p2) {
         int d1 = c1.getDamages();
         int d2 = c2.getDamages();
+        if (!c1.isShield() || !c2.isShield()) //no shield
         if (c1 instanceof Creature && c2 instanceof Creature) {
             // 2 creatures s'affrontent
             if (d1 > d2) {
@@ -199,8 +196,14 @@ public class Game {
         }
     }
 
+
+    /**
+     * Remove dead players
+     *
+     *
+     */
     private void checkPlayers() {
-        ArrayList<Player> keep = new ArrayList<Player>(); // players to keep in play
+        ArrayList<Player> keep = new ArrayList<>(); // players to keep in play
         // check all players
         for (Player p : players) {
             if (p.getHealthPoint() > 0) {
@@ -214,18 +217,18 @@ public class Game {
     }
 
 
-    public Player getWinner() {
+    private Player getWinner() {
         if (players.size() > 0) return players.get(0);
         else return null;
     }
 
 
-    public boolean isEnded() {
+    private boolean isEnded() {
         return players.size() < 2;
     }
 
 
-    public boolean start() {
+    boolean start() {
         boolean bRes = false;
         if (ihm == null) throw new MissingResourceException("IHM object not defined", "Ihm", "100");
         if (ia == null) throw new MissingResourceException("IA object not defined", "IA", "200");
