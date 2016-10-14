@@ -5,24 +5,11 @@ package edu.insightr.spellmonger;
  */
 public class GameTest {
 
-    @org.junit.Before
-    public void setUp() throws Exception {
-
-    }
-
-    @org.junit.Test
-    public void addPlayer() throws Exception {
-
-    }
-
-    @org.junit.Test
-    public void getWinner() throws Exception {
-
-    }
-
-    @org.junit.Test
-    public void isEnded() throws Exception {
-
-    }
+    /*
+    To test:
+    -addPlayer(Player p)
+    -buildDeck()
+    -???
+     */
 
 }

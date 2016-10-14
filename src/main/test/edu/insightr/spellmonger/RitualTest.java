@@ -10,6 +10,15 @@ import static org.junit.Assert.*;
  */
 public class RitualTest {
 
+    /*
+    To test:
+    -getDeltaPoints
+    -isHeal
+    -isShield
+    -getDamages
+    -getHeal
+     */
+
     private Ritual ritual;
 
     @Test
@@ -18,8 +27,16 @@ public class RitualTest {
         assertEquals(-3, ritual.getDeltaPoints());
     }
 
+    @Test
+    public void testIsHeal() throws Exception {
 
-/*
+    }
+
+    @Test
+    public void testIsShield() throws Exception {
+
+    }
+
     @Test
     public void testGetDamages() throws Exception {
 
@@ -27,6 +44,7 @@ public class RitualTest {
 
     @Test
     public void testGetHeal() throws Exception {
+
     }
-*/
+
 }

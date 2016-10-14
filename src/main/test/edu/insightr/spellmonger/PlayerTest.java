@@ -12,6 +12,18 @@ import static org.junit.Assert.assertEquals;
  */
 public class PlayerTest {
 
+    /*
+    To test:
+    -getHealthPoint
+    -getHand
+    -setHealthPoint
+    -isHuman
+    -isIA
+    -changeHealthPoints
+    -getName
+    -addCardToDeck
+     */
+
     private Player player;
     private Deck deck;
     private Card cardC;
@@ -31,6 +43,10 @@ public class PlayerTest {
         assertEquals(0, player.getHealthPoint());
     }
 
+    @Test
+    public void testGetHand() throws Exception {
+
+    }
 
     @Test
     public void testSetHealthPoint() throws Exception {
@@ -41,8 +57,28 @@ public class PlayerTest {
     }
 
     @Test
+    public void testIsHuman() throws Exception {
+
+    }
+
+    @Test
+    public void testIsIA() throws Exception {
+
+    }
+
+    @Test
+    public void testChangeHealthPoints() throws Exception {
+
+    }
+
+    @Test
     public void testGetName() throws Exception {
         assertEquals("A", player.getName());
+    }
+
+    @Test
+    public void testAddCardToDeck() throws Exception {
+
     }
 
 }
