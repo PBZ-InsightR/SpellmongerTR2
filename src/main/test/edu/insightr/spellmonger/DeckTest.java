@@ -1,6 +1,9 @@
 package edu.insightr.spellmonger;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -15,41 +18,35 @@ public class DeckTest {
     Les tests unitaires doivent être indépendants les uns des autres:
     La méthode Before va regénérer un deck et des cartes avant chaque test
      */
+    private Deck deck;
+    private Card cardC;
+    private Card cardR;
+
     @Before
     public void initializeTests() {
-        private Deck deck = new Deck();/*empty deck*/
-        private Card cardC = new Creature("Eagle", 1);
-        private Card cardR = new Ritual("Curse", -3);
+        cardC = new Creature("Eagle");
+        cardR = new Ritual("Curse");
+        ArrayList<Card> set = new ArrayList<Card>();
+        set.add(cardC);
+        deck = new Deck();
     }
 
     @Test
     public void testAddCard() throws Exception {
-        assertTrue(deck.addCard(cardC));
-        /*
-        Ajouter une assertion (nécessite une nouvelle méthode?): deck "contains" cardC
-         */
-        assertFalse(deck.addCard(cardR));/*Pourquoi faux?*/
+        assertTrue(deck.add(cardR));
     }
 
     @Test
     public void testRemoveCard() throws Exception {
-        assertFalse(deck.removeCard(cardR)); // doit retourner false car le deck est réinitialisé avant chaque test
-        //ajout
-        deck.addCard(cardR);
-        assertTrue(deck.removeCard(cardR)); //maintenant doit etre true
-    }
-
-    @Test
-    public void testGetDamages() throws Exception {
-        //deck réinitalisé sans cartes
-        deck.addCard(cardC);//ajout carte avec 1 dommage
-        assertEquals(1, deck.getDamages());
+        assertFalse(deck.remove(cardR)); // doit retourner false car le deck est réinitialisé avant chaque test
+        deck.add(cardR);
+        assertTrue(deck.remove(cardR)); //maintenant doit etre true
     }
 
     @Test
     public void testGetSize() throws Exception {
-        deck.addCard(cardC);
-        assertEquals(1, deck.getSize());
+        deck.add(cardC);
+        assertEquals(1, deck.size());
     }
 
 }

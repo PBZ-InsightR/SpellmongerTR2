@@ -1,11 +1,10 @@
 package edu.insightr.spellmonger;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by adrianpothuaud on 13/10/2016.
  */
 public class GameTest {
+
     @org.junit.Before
     public void setUp() throws Exception {
 

@@ -1,8 +1,9 @@
 package edu.insightr.spellmonger;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Jessica on 03/10/2016.
@@ -11,10 +12,13 @@ import static org.junit.Assert.*;
  */
 public class CreatureTest {
 
+    private Creature eagle;
+    private Creature wolf;
+
     @Before
     public void initializeTests(){
-        Creature eagle = new Creature("Eagle", 1);
-        Creature wolf = new Creature("Wolf", 1);
+        eagle = new Creature("Eagle");
+        wolf = new Creature("Wolf");
     }
 
     @Test
