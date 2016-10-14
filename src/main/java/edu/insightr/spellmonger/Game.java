@@ -119,7 +119,8 @@ class Game {
         }
 
         // récupère les cartes jouées par chaque joueur
-        for (Player p : players) {
+        for (int pos = 0; pos < players.size(); pos++){
+            Player p = players.get(pos);
             Card c;
             if (p.isIA()) {
                 c = ia.askForCard(p);
