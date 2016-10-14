@@ -166,7 +166,6 @@ class Game {
     private void matchCards(Card c1, Player p1, Card c2, Player p2) {
         int d1 = c1.getDamages();
         int d2 = c2.getDamages();
-        if (!c1.isShield() || !c2.isShield()) //no shield
         if (c1 instanceof Creature && c2 instanceof Creature) {
             // 2 creatures s'affrontent
             if (d1 > d2) {
