@@ -3,7 +3,6 @@ package edu.insightr.spellmonger;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 /**
@@ -11,7 +10,7 @@ import static org.junit.Assert.assertFalse;
  * modified by Adrian
  * Test methods of class Creature
  */
-public class CreatureTest {
+public class CreatureTest{
 
     /*
     To test:
@@ -40,15 +39,15 @@ public class CreatureTest {
 
     @Test
     public void testGetDamages() throws Exception {
-        assertEquals(1, eagle.getDamages());
-        assertEquals(2, wolf.getDamages());
-        assertEquals(3, bear.getDamages());
+        org.junit.Assert.assertEquals(1, eagle.getDamages());
+        org.junit.Assert.assertEquals(2, wolf.getDamages());
+        org.junit.Assert.assertEquals(3, bear.getDamages());
     }
 
     @Test
     public void testGetHeal() throws Exception {
-        assertEquals(0, eagle.getHeal());
-        assertEquals(0, wolf.getHeal());
-        assertEquals(0, bear.getHeal());
+        org.junit.Assert.assertEquals(0, eagle.getHeal());
+        org.junit.Assert.assertEquals(0, wolf.getHeal());
+        org.junit.Assert.assertEquals(0, bear.getHeal());
     }
 }
