@@ -3,16 +3,12 @@ package edu.insightr.spellmonger;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 /**
  * Created by Jessica on 03/10/2016.
  * modified by Adrian
  * Test methods of class Player
  */
-public class PlayerTest {
+public class PlayerTest{
 
     /*
     To test:
@@ -53,8 +49,8 @@ public class PlayerTest {
 
     @Test
     public void testGetHealthPoint() throws Exception {
-        assertEquals(0, playerHuman.getHealthPoint());
-        assertEquals(0, playerIA.getHealthPoint());
+        org.junit.Assert.assertEquals(0, playerHuman.getHealthPoint());
+        org.junit.Assert.assertEquals(0, playerIA.getHealthPoint());
     }
 
     @Test
@@ -70,20 +66,20 @@ public class PlayerTest {
         n2=20;
         playerHuman.setHealthPoint(n1);
         playerIA.setHealthPoint(n2);
-        assertEquals(n1, playerHuman.getHealthPoint());
-        assertEquals(n2, playerIA.getHealthPoint());
+        org.junit.Assert.assertEquals(n1, playerHuman.getHealthPoint());
+        org.junit.Assert.assertEquals(n2, playerIA.getHealthPoint());
     }
 
     @Test
     public void testIsHuman() throws Exception {
-        assertTrue(playerHuman.isHuman());
-        assertFalse(playerIA.isHuman());
+        org.junit.Assert.assertTrue(playerHuman.isHuman());
+        org.junit.Assert.assertFalse(playerIA.isHuman());
     }
 
     @Test
     public void testIsIA() throws Exception {
-        assertTrue(playerIA.isIA());
-        assertFalse(playerHuman.isIA());
+        org.junit.Assert.assertTrue(playerIA.isIA());
+        org.junit.Assert.assertFalse(playerHuman.isIA());
     }
 
     @Test
@@ -93,8 +89,8 @@ public class PlayerTest {
         int playerIAHealthPointInit = playerIA.getHealthPoint();
         playerHuman.changeHealthPoints(delta);
         playerIA.changeHealthPoints(delta);
-        assertEquals(playerHumanHealthPointInit + delta, playerHuman.getHealthPoint());
-        assertEquals(playerIAHealthPointInit + delta, playerIA.getHealthPoint());
+        org.junit.Assert.assertEquals(playerHumanHealthPointInit + delta, playerHuman.getHealthPoint());
+        org.junit.Assert.assertEquals(playerIAHealthPointInit + delta, playerIA.getHealthPoint());
     }
 
     @Test
@@ -105,10 +101,10 @@ public class PlayerTest {
 
     @Test
     public void testAddCardToDeck() throws Exception {
-        assertTrue(playerHuman.addCardToDeck(cardB));
-        assertTrue(playerIA.addCardToDeck(cardP));
-        assertTrue(playerHuman.getHand().contains(cardB));
-        assertTrue(playerIA.getHand().contains(cardP));
+        org.junit.Assert.assertTrue(playerHuman.addCardToDeck(cardB));
+        org.junit.Assert.assertTrue(playerIA.addCardToDeck(cardP));
+        org.junit.Assert.assertTrue(playerHuman.getHand().contains(cardB));
+        org.junit.Assert.assertTrue(playerIA.getHand().contains(cardP));
     }
 
 }
