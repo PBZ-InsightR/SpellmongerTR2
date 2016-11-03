@@ -43,11 +43,11 @@ public class Ritual extends Card {
         }
     }
 
-    protected int getDeltaPoints() {
+    public int getDeltaPoints() {
         return deltaPoints;
     }
 
-    private boolean isHeal() {
+    public boolean isHeal() {
         return (getDeltaPoints() > 0);
     }
 

@@ -38,7 +38,7 @@ class Game {
     }
 
 
-    boolean addPlayer(Player p) {
+    public boolean addPlayer(Player p) {
         return players.add(p);
     }
 
@@ -85,7 +85,7 @@ class Game {
         return bRes;
     }
 
-    private boolean distribute() {
+    public boolean distribute() {
         // on distribue tout le paquet (nombre égal pour chaque joueur)
         int nbr = cardPool.size() / players.size();
         // on distribue le nombre de cartes prévu à chaque joueur

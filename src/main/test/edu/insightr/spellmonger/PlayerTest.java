@@ -24,13 +24,8 @@ public class PlayerTest{
 
     private Player playerHuman;
     private Player playerIA;
-    private Deck deck;
-    private Card cardE;
-    private Card cardW;
     private Card cardB;
     private Card cardP;
-    private Card cardS;
-    private Card cardM;
     private int n1;
     private int n2;
 
@@ -38,13 +33,8 @@ public class PlayerTest{
     public void initializeTests(){
         playerHuman = new Player("Hum");
         playerIA = new Player("Bot", false);
-        deck = new Deck();
-        cardE = new Creature("Eagle");
-        cardW = new Creature("Wolf");
         cardB = new Creature("Bear");
         cardP = new Ritual("Poison");
-        cardS = new Ritual("Shield");
-        cardM = new Ritual("Medicine");
     }
 
     @Test
@@ -61,7 +51,7 @@ public class PlayerTest{
 
     @Test
     public void testSetHealthPoint() throws Exception {
-        //result is valuable onlyif testGetHealthPoint is not KO
+        //result is valuable only if testGetHealthPoint is not KO
         n1=10;
         n2=20;
         playerHuman.setHealthPoint(n1);
