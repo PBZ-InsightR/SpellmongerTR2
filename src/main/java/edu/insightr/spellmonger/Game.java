@@ -8,6 +8,7 @@ import java.util.*;
 /**
  * Used to define game constants (such as hp, decks, ...)
  * Created by Rod on 07/10/2016.
+ * Update by Loiseau Thomas et Michon Paul
  */
 class Game {
     private static final Logger logger = Logger.getLogger(SpellmongerApp.class);
@@ -123,7 +124,7 @@ class Game {
             Player p = players.get(pos);
             Card c;
             if (p.isIA()) {
-                c = ia.askForCard(p);
+                c = ia.askForCard(players, pos);
             } else {
                 c = ihm.askForCard(p);
             }
@@ -178,7 +179,7 @@ class Game {
             // note : si 2 creatures identiques, rien ne se passe
         } else {
             // 2 rituels s'affrontent ou 1 rituel affronte 1 creature
-            if (!c1.isShield() || !c2.isShield()) {
+            if (!c1.isShield() && !c2.isShield()) {
                 // pas de shield présent, on applique les dégats éventuels aux 2 joueurs
                 p1.changeHealthPoints(-d2);
                 p2.changeHealthPoints(-d1);
@@ -206,6 +207,7 @@ class Game {
         // check all players
         for (Player p : players) {
             if (p.getHealthPoint() > 0) {
+                logger.info("* Player " + p.getName() + " has " + p.getHealthPoint() + " HP left !");
                 keep.add(p);
             } else {
                 logger.info("* Player " + p.getName() + " is eliminated !");
