@@ -178,7 +178,7 @@ class Game {
             // note : si 2 creatures identiques, rien ne se passe
         } else {
             // 2 rituels s'affrontent ou 1 rituel affronte 1 creature
-            if (!c1.isShield() || !c2.isShield()) {
+            if (!c1.isShield() && !c2.isShield()) {
                 // pas de shield présent, on applique les dégats éventuels aux 2 joueurs
                 p1.changeHealthPoints(-d2);
                 p2.changeHealthPoints(-d1);
@@ -206,6 +206,7 @@ class Game {
         // check all players
         for (Player p : players) {
             if (p.getHealthPoint() > 0) {
+                logger.info("* Player " + p.getName() + " has " + p.getHealthPoint() + " HP left !");
                 keep.add(p);
             } else {
                 logger.info("* Player " + p.getName() + " is eliminated !");
