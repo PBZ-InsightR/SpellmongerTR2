@@ -207,6 +207,7 @@ class Game {
         // check all players
         for (Player p : players) {
             if (p.getHealthPoint() > 0) {
+                logger.info("* Player " + p.getName() + " has " + p.getHealthPoint() + " HP left !");
                 keep.add(p);
             } else {
                 logger.info("* Player " + p.getName() + " is eliminated !");
