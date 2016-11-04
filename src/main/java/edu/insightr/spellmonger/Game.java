@@ -8,6 +8,7 @@ import java.util.*;
 /**
  * Used to define game constants (such as hp, decks, ...)
  * Created by Rod on 07/10/2016.
+ * Update by Loiseau Thomas et Michon Paul
  */
 class Game {
     private static final Logger logger = Logger.getLogger(SpellmongerApp.class);
@@ -123,7 +124,7 @@ class Game {
             Player p = players.get(pos);
             Card c;
             if (p.isIA()) {
-                c = ia.askForCard(p);
+                c = ia.askForCard(players, pos);
             } else {
                 c = ihm.askForCard(p);
             }
