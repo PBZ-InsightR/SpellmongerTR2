@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * Pour jouer, cette IA renvoie la 1ere carte de la main du joueur
  */
 public class IAttarde extends IA {
+
 /*
     public Card askForCard(ArrayList<Player> players, int currentPlayerPos) {
         Player p = players.get(currentPlayerPos);

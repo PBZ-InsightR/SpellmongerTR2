@@ -112,7 +112,5 @@ class IA{
         return p.get(posIA).getHealthPoint() - sum / (p.size()-1);
     }
 
-    public void cardsDistributed(Deck d, int pos) {
-
-    }
+    public void cardsDistributed(Deck d, int pos) {}
 }

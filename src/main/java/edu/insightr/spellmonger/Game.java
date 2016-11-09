@@ -231,7 +231,6 @@ class Game {
         return players.size() < 2;
     }
 
-
     boolean start() {
         boolean bRes = false;
         if (ihm == null) throw new MissingResourceException("IHM object not defined", "Ihm", "100");
