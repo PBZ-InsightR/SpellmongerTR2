@@ -34,7 +34,7 @@ class Game {
         tabCards.put("Shield", 5);
         tabCards.put("Medicine", 3);
         tabCards.put("Eagle", 10);
-        tabCards.put("Wolf", 10);
+        tabCards.put("Wolf", 12);
         tabCards.put("Bear", 10);
     }
 
@@ -112,6 +112,7 @@ class Game {
 
         logger.info("\n");
         logger.info("Playing round " + roundCounter);
+        logger.info("Compteur IA " + ia.getCompteur());
         Deck board = new Deck(players.size());
 
         // fournit les mains des joueurs à l'ihm avant le jeu
@@ -155,6 +156,8 @@ class Game {
             }
         }
 
+        //ia comptes les cartes tombées
+        ia.memorizeCard(board);
         // on remet les cartes du board dans le tas
         cardPool.addAll(board);
         board.clear();
