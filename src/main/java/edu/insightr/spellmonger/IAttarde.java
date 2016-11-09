@@ -10,46 +10,349 @@ import java.util.ArrayList;
  */
 public class IAttarde extends IA {
 
-    int deckPow = 0;
-
-    public void cardsAlreadyPlayed(Deck played, int roundsPlayed) {
-        // unused at the moment
-    }
-
-    private Card getCard(Deck d, String[] names) {
-        Card c;
-      for (int i=0; i<names.length; i++) {
-          c = d.findFromName(names[i]);
-          if (c != null) return c; // found
-      }
-      // none found, return first card
-      return d.get(0);
-    }
-
+/*
     public Card askForCard(ArrayList<Player> players, int currentPlayerPos) {
         Player p = players.get(currentPlayerPos);
-        Deck hand = p.getPlayHand();
+        Deck hand = p.getHand();
+        int cmptIA = cardCmpt(hand);
         double cmptHealth = lifeCmpt(players, currentPlayerPos);
+        boolean cardInHand = false;
         Card choosen = null;
-        if (currentPlayerPos != 1) {
-            if (deckPow < 0) {
-                choosen = getCard(hand, new String[]{"Poison", "Bear", "Wolf", "Eagle", "Shield", "Medicine"});
-            } else {
-                choosen = getCard(hand, new String[]{"Shield", "Medicine", "Poison", "Bear", "Eagle", "Wolf"});
+        if (cmptIA < -2){
+            if (cmptHealth < -3){
+                while (!cardInHand) {
+                    double rand = Math.random();
+                    if (rand < 0.45) {
+                        if (inHand("Bear", hand)) {
+                            choosen = new Creature("Bear");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.45 && rand < 0.9) {
+                        if (inHand("Poison", hand)) {
+                            choosen = new Ritual("Poison");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.9 && rand < 0.925) {
+                        if (inHand("Shield", hand)) {
+                            choosen = new Ritual("Shield");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.925 && rand < 0.95) {
+                        if (inHand("Medicine", hand)) {
+                            choosen = new Ritual("Medicine");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.95 && rand < 0.975) {
+                        if (inHand("Eagle", hand)) {
+                            choosen = new Creature("Eagle");
+                            cardInHand = true;
+                        }
+                    } else {
+                        if (inHand("Wolf", hand)) {
+                            choosen = new Creature("Wolf");
+                            cardInHand = true;
+                        }
+                    }
+                }
+            }
+            else if (cmptHealth > 3){
+                while (!cardInHand) {
+                    double rand = Math.random();
+                    if (rand < 0.03) {
+                        if (inHand("Bear", hand)) {
+                            choosen = new Creature("Bear");
+                            cardInHand = true;
+                        }
+                    } else if (rand >=0.03  && rand < 0.06) {
+                        if (inHand("Poison", hand)) {
+                            choosen = new Ritual("Poison");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.06 && rand < 0.36) {
+                        if (inHand("Shield", hand)) {
+                            choosen = new Ritual("Shield");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.36 && rand < 0.4) {
+                        if (inHand("Medicine", hand)) {
+                            choosen = new Ritual("Medicine");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.4 && rand < 0.7) {
+                        if (inHand("Eagle", hand)) {
+                            choosen = new Creature("Eagle");
+                            cardInHand = true;
+                        }
+                    } else {
+                        if (inHand("Wolf", hand)) {
+                            choosen = new Creature("Wolf");
+                            cardInHand = true;
+                        }
+                    }
+                }
+            }
+            else{
+                while (!cardInHand) {
+                    double rand = Math.random();
+                    if (rand < 0.02) {
+                        if (inHand("Bear", hand)) {
+                            choosen = new Creature("Bear");
+                            cardInHand = true;
+                        }
+                    } else if (rand >=0.02  && rand < 0.04) {
+                        if (inHand("Poison", hand)) {
+                            choosen = new Ritual("Poison");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.04 && rand < 0.28) {
+                        if (inHand("Shield", hand)) {
+                            choosen = new Ritual("Shield");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.28 && rand < 0.52) {
+                        if (inHand("Medicine", hand)) {
+                            choosen = new Ritual("Medicine");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.52 && rand < 0.76) {
+                        if (inHand("Eagle", hand)) {
+                            choosen = new Creature("Eagle");
+                            cardInHand = true;
+                        }
+                    } else {
+                        if (inHand("Wolf", hand)) {
+                            choosen = new Creature("Wolf");
+                            cardInHand = true;
+                        }
+                    }
+                }
             }
         }
-        else {
-            if (deckPow < 0) {
-                choosen = getCard(hand, new String[]{"Shield", "Medicine", "Poison", "Bear", "Eagle", "Wolf"});
-            } else {
-                choosen = getCard(hand, new String[]{"Poison", "Bear", "Wolf", "Eagle", "Shield", "Medicine"});
+        else if (cmptIA > 2){
+            if (cmptHealth < -3){
+                while (!cardInHand) {
+                    double rand = Math.random();
+                    if (rand < 0.24) {
+                        if (inHand("Bear", hand)) {
+                            choosen = new Creature("Bear");
+                            cardInHand = true;
+                        }
+                    } else if (rand >=0.24  && rand < 0.48) {
+                        if (inHand("Poison", hand)) {
+                            choosen = new Ritual("Poison");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.48 && rand < 0.72) {
+                        if (inHand("Shield", hand)) {
+                            choosen = new Ritual("Shield");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.72 && rand < 0.96) {
+                        if (inHand("Medicine", hand)) {
+                            choosen = new Ritual("Medicine");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.96 && rand < 0.98) {
+                        if (inHand("Eagle", hand)) {
+                            choosen = new Creature("Eagle");
+                            cardInHand = true;
+                        }
+                    } else {
+                        if (inHand("Wolf", hand)) {
+                            choosen = new Creature("Wolf");
+                            cardInHand = true;
+                        }
+                    }
+                }
+            }
+            else if (cmptHealth > 3){
+                while (!cardInHand) {
+                    double rand = Math.random();
+                    if (rand < 0.2) {
+                        if (inHand("Bear", hand)) {
+                            choosen = new Creature("Bear");
+                            cardInHand = true;
+                        }
+                    } else if (rand >=0.2  && rand < 0.4) {
+                        if (inHand("Poison", hand)) {
+                            choosen = new Ritual("Poison");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.4 && rand < 0.5) {
+                        if (inHand("Shield", hand)) {
+                            choosen = new Ritual("Shield");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.5 && rand < 0.6) {
+                        if (inHand("Medicine", hand)) {
+                            choosen = new Ritual("Medicine");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.6 && rand < 0.8) {
+                        if (inHand("Eagle", hand)) {
+                            choosen = new Creature("Eagle");
+                            cardInHand = true;
+                        }
+                    } else {
+                        if (inHand("Wolf", hand)) {
+                            choosen = new Creature("Wolf");
+                            cardInHand = true;
+                        }
+                    }
+                }
+            }
+            else{
+                while (!cardInHand) {
+                    double rand = Math.random();
+                    if (rand < 0.03) {
+                        if (inHand("Bear", hand)) {
+                            choosen = new Creature("Bear");
+                            cardInHand = true;
+                        }
+                    } else if (rand >=0.03  && rand < 0.06) {
+                        if (inHand("Poison", hand)) {
+                            choosen = new Ritual("Poison");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.6 && rand < 0.36) {
+                        if (inHand("Shield", hand)) {
+                            choosen = new Ritual("Shield");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.36 && rand < 0.4) {
+                        if (inHand("Medicine", hand)) {
+                            choosen = new Ritual("Medicine");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.4 && rand < 0.7) {
+                        if (inHand("Eagle", hand)) {
+                            choosen = new Creature("Eagle");
+                            cardInHand = true;
+                        }
+                    } else {
+                        if (inHand("Wolf", hand)) {
+                            choosen = new Creature("Wolf");
+                            cardInHand = true;
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            if (cmptHealth < 3){
+                while (!cardInHand) {
+                    double rand = Math.random();
+                    if (rand < 0.15) {
+                        if (inHand("Bear", hand)) {
+                            choosen = new Creature("Bear");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.15 && rand < 0.3) {
+                        if (inHand("Poison", hand)) {
+                            choosen = new Ritual("Poison");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.3 && rand < 0.55) {
+                        if (inHand("Shield", hand)) {
+                            choosen = new Ritual("Shield");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.55 && rand < 0.8) {
+                        if (inHand("Medicine", hand)) {
+                            choosen = new Ritual("Medicine");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.8 && rand < 0.9) {
+                        if (inHand("Eagle", hand)) {
+                            choosen = new Creature("Eagle");
+                            cardInHand = true;
+                        }
+                    } else {
+                        if (inHand("Wolf", hand)) {
+                            choosen = new Creature("Wolf");
+                            cardInHand = true;
+                        }
+                    }
+                }
+            }
+            else if (cmptHealth > 3){
+                while (!cardInHand) {
+                    double rand = Math.random();
+                    if (rand < 0.15) {
+                        if (inHand("Bear", hand)) {
+                            choosen = new Creature("Bear");
+                            cardInHand = true;
+                        }
+                    } else if (rand >=0.15  && rand < 0.3) {
+                        if (inHand("Poison", hand)) {
+                            choosen = new Ritual("Poison");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.3 && rand < 0.4) {
+                        if (inHand("Shield", hand)) {
+                            choosen = new Ritual("Shield");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.4 && rand < 0.5) {
+                        if (inHand("Medicine", hand)) {
+                            choosen = new Ritual("Medicine");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.5 && rand < 0.75) {
+                        if (inHand("Eagle", hand)) {
+                            choosen = new Creature("Eagle");
+                            cardInHand = true;
+                        }
+                    } else {
+                        if (inHand("Wolf", hand)) {
+                            choosen = new Creature("Wolf");
+                            cardInHand = true;
+                        }
+                    }
+                }
+            }
+            else{
+                while (!cardInHand) {
+                    double rand = Math.random();
+                    if (rand < 0.25) {
+                        if (inHand("Bear", hand)) {
+                            choosen = new Creature("Bear");
+                            cardInHand = true;
+                        }
+                    } else if (rand >=0.25  && rand < 0.5) {
+                        if (inHand("Poison", hand)) {
+                            choosen = new Ritual("Poison");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.5 && rand < 0.6) {
+                        if (inHand("Shield", hand)) {
+                            choosen = new Ritual("Shield");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.6 && rand < 0.7) {
+                        if (inHand("Medicine", hand)) {
+                            choosen = new Ritual("Medicine");
+                            cardInHand = true;
+                        }
+                    } else if (rand >= 0.7 && rand < 0.85) {
+                        if (inHand("Eagle", hand)) {
+                            choosen = new Creature("Eagle");
+                            cardInHand = true;
+                        }
+                    } else {
+                        if (inHand("Wolf", hand)) {
+                            choosen = new Creature("Wolf");
+                            cardInHand = true;
+                        }
+                    }
+                }
             }
         }
         return choosen;
     }
 
-    public int calcBoardPower(Deck d){
-        int res = 0;
+    public int cardCmpt(Deck d){
+        int myCmpt = 0;
         for (int i=0; i<d.size(); i++){
             Card myCard = d.get(i);
             switch (myCard.getName()){
@@ -57,18 +360,18 @@ public class IAttarde extends IA {
                 case "Poison" :
                 case "Shield" :
                 case "Medicine" :
-                    res++;
+                    myCmpt++;
                     break;
                 case "Eagle" :
                 case "Wolf" :
-                    res--;
+                    myCmpt--;
                     break;
             }
         }
-        return res;
+        return myCmpt;
     }
 
-    private double lifeCmpt(ArrayList<Player> p, int posIA){
+    public double lifeCmpt(ArrayList<Player> p, int posIA){
         double sum = 0;
         for (int i=0; i<p.size(); i++) {
             if (i != posIA) {
@@ -78,11 +381,18 @@ public class IAttarde extends IA {
         return p.get(posIA).getHealthPoint() - sum / p.size();
     }
 
-    public void cardsDistributed() {
-        deckPow = 0;
+    public boolean inHand(String name, Deck myHand){
+        boolean cardInHand = false;
+        for (int i=0; i<myHand.size(); i++){
+            if (myHand.get(i).getName().equals(name)){
+                cardInHand = true;
+            }
+        }
+        return cardInHand;
     }
 
-    public void boardPlayed(Deck board) {
-        deckPow += calcBoardPower(board);
+    public void cardsDistributed(Deck d, int pos) {
+
     }
+*/
 }

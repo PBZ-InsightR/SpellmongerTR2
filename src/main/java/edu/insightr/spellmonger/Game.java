@@ -96,16 +96,11 @@ class Game {
             players.forEach(p -> p.addCardToDeck(cardPool.draw()));
         }
 
-        // signale aux IA que les cartes sont distribuées
-        players.forEach(p -> {
-            if (p.isIA()) ia.cardsDistributed();
-        });
-
-        // fournit aux joueurs IA leur deck
+        // fournit à l'IA les joueurs (avec leur deck)
         for (int i=0; i< players.size(); i++) {
-            Player p = players.get(i);
-            p.giveHand();
-            ihm.showDistribution(p.getPlayHand(), i);
+          Player p = players.get(i);
+            if (p.isIA()) ia.cardsDistributed(p.getHand(), i);
+            ihm.showDistribution(p.getHand(), i);
         }
         return true;
     }
@@ -117,11 +112,12 @@ class Game {
 
         logger.info("\n");
         logger.info("Playing round " + roundCounter);
+        logger.info("Compteur IA " + ia.getCompteur());
         Deck board = new Deck(players.size());
 
         // fournit les mains des joueurs à l'ihm avant le jeu
         for (int pos = 0; pos < players.size(); pos++) {
-            ihm.showPlayerHand(players.get(pos).getPlayHand(), pos);
+            ihm.showPlayerHand(players.get(pos).getHand(), pos);
         }
 
         // récupère les cartes jouées par chaque joueur
@@ -134,7 +130,7 @@ class Game {
                 c = ihm.askForCard(p);
             }
             // sort la carte jouée de la main du joueur
-            p.getPlayHand().remove(c);
+            p.getHand().remove(c);
             // attention : en cas de thread asynchrones, on va avoir un souci avec la position
             board.add(c);
         }
@@ -160,11 +156,8 @@ class Game {
             }
         }
 
-        // montre les cartes jouées ce tour à l'IA
-        players.forEach(p -> {
-            if (p.isIA()) ia.boardPlayed(board);
-        });
-
+        //ia comptes les cartes tombées
+        ia.memorizeCard(board);
         // on remet les cartes du board dans le tas
         cardPool.addAll(board);
         board.clear();
@@ -199,22 +192,10 @@ class Game {
 
     private void nextRound() {
         roundCounter++;
-        Player p0 = players.get(0);
         // si les joueurs n'ont plus de cartes, on redistribue
-        if (p0.noMoreCard()) {
+        if (players.get(0).getHand().size() == 0) {
             Collections.shuffle(cardPool);
             distribute();
-        }
-        else {
-            // check if current hand totally played
-            if (p0.getPlayHand().size() == 0) {
-                // give 3 cards to each player
-                for (int i=0; i< players.size(); i++) {
-                    Player p = players.get(i);
-                    p.giveHand();
-                    ihm.showDistribution(p.getPlayHand(), i);
-                }
-            }
         }
     }
 
@@ -249,7 +230,6 @@ class Game {
     private boolean isEnded() {
         return players.size() < 2;
     }
-
 
     boolean start() {
         boolean bRes = false;
