@@ -34,8 +34,8 @@ class Player {
 
     public boolean noMoreCard() { return (getPlayHand().size() + getDeck().size()) == 0; }
 
-    public void setHealthPoint(int healthPoint) {
-        this.healthPoint = healthPoint;
+    public void setHealthPoint(int hp) {
+        healthPoint = hp;
     }
 
     public boolean isHuman() {
@@ -47,7 +47,7 @@ class Player {
     }
 
     public void changeHealthPoints(int delta) {
-        healthPoint = getHealthPoint() + delta;
+        healthPoint += delta;
     }
 
     String getName() {
