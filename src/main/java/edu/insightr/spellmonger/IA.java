@@ -1,5 +1,7 @@
 package edu.insightr.spellmonger;
 
+import org.apache.log4j.Logger;
+
 import java.util.ArrayList;
 
 /**
@@ -7,15 +9,12 @@ import java.util.ArrayList;
  * Created by Paul on 21/10/2016.
  */
 abstract class IA {
+    protected static final Logger logger = Logger.getLogger(SpellmongerApp.class);
 
-    public abstract void cardsDistributed(Deck d, int pos);
-    //public abstract Card askForCard(Player p);
-
+    public abstract void cardsDistributed();
+    public abstract void cardsAlreadyPlayed(Deck played, int roundsPlayed);
+    // a modifier pour ne passer à l'IA que les PV des adversaires
     public abstract Card askForCard(ArrayList<Player> players, int currentPlayerPos);
+    public abstract void boardPlayed(Deck board);
 
-    public abstract int cardCmpt(Deck d);
-
-    public abstract double lifeCmpt(ArrayList<Player> p, int posIA);
-
-    public abstract boolean inHand(String name, Deck myHand);
 }

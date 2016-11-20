@@ -12,7 +12,7 @@ class IhmConsole extends Ihm {
     private static final Logger logger = Logger.getLogger(SpellmongerApp.class);
 
     public Card askForCard(Player p) {
-        return p.getHand().get(0);
+        return p.getPlayHand().get(0);
     }
 
     public void showDistribution(Deck d, int pos) {

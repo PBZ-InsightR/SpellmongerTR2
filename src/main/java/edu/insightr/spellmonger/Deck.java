@@ -24,4 +24,28 @@ class Deck extends ArrayList<Card> {
         }
         return s;
     }
+
+    /**
+     * Returns a card of a certain type from this deck
+     * @param cardClass : the class of the desired card type
+     * @return Card
+     */
+    public Card findFromClass(Class<?> cardClass) {
+        for (Card c : this) {
+            if (cardClass.isInstance(c)) return c;
+        }
+        return null;
+    }
+
+    /**
+     * Returns a card of a certain name from this deck, if any
+     * @param name : the class name of the desired card type
+     * @return Card
+     */
+    public Card findFromName(String name) {
+        for (Card c : this) {
+            if (c.getName().equals(name)) return c;
+        }
+        return null;
+    }
 }

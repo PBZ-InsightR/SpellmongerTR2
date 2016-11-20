@@ -9,7 +9,8 @@ package edu.insightr.spellmonger;
 class Player {
 
     private String name;
-    private Deck hand = new Deck();
+    private Deck deck = new Deck(); // complete deck
+    private Deck playHand = new Deck(); // 3 cards in play
     private int healthPoint = 0;
     private boolean human;
 
@@ -26,12 +27,15 @@ class Player {
         return healthPoint;
     }
 
-    public Deck getHand() {
-        return hand;
+    public Deck getPlayHand() {
+        return playHand;
     }
+    public Deck getDeck() { return deck; }
 
-    public void setHealthPoint(int healthPoint) {
-        this.healthPoint = healthPoint;
+    public boolean noMoreCard() { return (getPlayHand().size() + getDeck().size()) == 0; }
+
+    public void setHealthPoint(int hp) {
+        healthPoint = hp;
     }
 
     public boolean isHuman() {
@@ -43,7 +47,7 @@ class Player {
     }
 
     public void changeHealthPoints(int delta) {
-        healthPoint = getHealthPoint() + delta;
+        healthPoint += delta;
     }
 
     String getName() {
@@ -51,7 +55,12 @@ class Player {
     }
 
     public boolean addCardToDeck(Card c) {
-        return hand.add(c);
+        return getDeck().add(c);
     }
 
+    public void giveHand() {
+        for (int i=0; i<3; i++) {
+            if (getDeck().size()>0) getPlayHand().add(getDeck().draw());
+        }
+    }
 }
