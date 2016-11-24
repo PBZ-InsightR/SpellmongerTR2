@@ -114,4 +114,23 @@ public class PlayerTest{
         org.junit.Assert.assertTrue(playerIA.getDeck().contains(cardP));
     }
 
+    @Test
+    public void testGiveHand() throws Exception {
+
+        /*playerHuman.giveHand();
+        org.junit.Assert.assertNotNull(playerHuman.getDeck());
+        org.junit.Assert.assertNotNull(playerHuman.getPlayHand());
+        org.junit.Assert.assertEquals(playerHuman.getDeck(), playerHuman.getPlayHand());
+        */
+
+        Deck giveHand = new Deck();
+        giveHand.add(cardB);
+        giveHand.add(cardB);
+        giveHand.add(cardP);
+        playerHuman.addCardToDeck(cardB);
+        playerHuman.addCardToDeck(cardB);
+        playerHuman.addCardToDeck(cardP);
+        playerHuman.giveHand();
+        org.junit.Assert.assertEquals(giveHand, playerHuman.getPlayHand());
+    }
 }
