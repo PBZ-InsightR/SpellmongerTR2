@@ -13,19 +13,22 @@ public class PlayerTest{
     /*
     To test:
     -getHealthPoint
-    -getHand
+    -getPlayHand
+    -getDeck
+    -noMoreCard
     -setHealthPoint
     -isHuman
     -isIA
     -changeHealthPoints
     -getName
     -addCardToDeck
+    -giveHand
      */
 
     private Player playerHuman;
     private Player playerIA;
-    private Card cardB;
-    private Card cardP;
+    private Card bear;
+    private Card poison;
     private int n1;
     private int n2;
 
@@ -33,8 +36,8 @@ public class PlayerTest{
     public void initializeTests(){
         playerHuman = new Player("Hum");
         playerIA = new Player("Bot", false);
-        cardB = new Creature("Bear");
-        cardP = new Ritual("Poison");
+        bear = new Creature("Bear");
+        poison = new Ritual("Poison");
     }
 
     @Test
@@ -44,9 +47,23 @@ public class PlayerTest{
     }
 
     @Test
-    public void testGetHand() throws Exception {
-        assert(playerHuman.getHand() instanceof Deck);
-        assert(playerIA.getHand() instanceof Deck);
+    public void testGetPlayHand() throws Exception {
+        assert(playerHuman.getPlayHand() instanceof Deck);
+        assert(playerIA.getPlayHand() instanceof Deck);
+    }
+
+    @Test
+    public void testGetDeck() throws Exception {
+        assert(playerHuman.getDeck() instanceof Deck);
+        assert(playerIA.getDeck() instanceof Deck);
+    }
+
+    @Test
+    public void testNoMoreCard() throws Exception {
+        org.junit.Assert.assertTrue(playerHuman.noMoreCard());
+
+        playerHuman.getPlayHand().add(bear);
+        org.junit.Assert.assertFalse(playerHuman.noMoreCard());
     }
 
     @Test
@@ -91,10 +108,10 @@ public class PlayerTest{
 
     @Test
     public void testAddCardToDeck() throws Exception {
-        org.junit.Assert.assertTrue(playerHuman.addCardToDeck(cardB));
-        org.junit.Assert.assertTrue(playerIA.addCardToDeck(cardP));
-        org.junit.Assert.assertTrue(playerHuman.getHand().contains(cardB));
-        org.junit.Assert.assertTrue(playerIA.getHand().contains(cardP));
+        org.junit.Assert.assertTrue(playerHuman.addCardToDeck(bear));
+        org.junit.Assert.assertTrue(playerIA.addCardToDeck(poison));
+        org.junit.Assert.assertTrue(playerHuman.getDeck().contains(bear));
+        org.junit.Assert.assertTrue(playerIA.getDeck().contains(poison));
     }
 
 }

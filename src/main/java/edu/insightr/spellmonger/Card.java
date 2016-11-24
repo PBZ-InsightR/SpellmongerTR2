@@ -7,7 +7,7 @@ package edu.insightr.spellmonger;
  * update by Rodolphe on 29/09/2016.
  */
 public abstract class Card {
-    //la class Card sera la classe r?f?rence, comme on la d?rive en blessing ou creature, les damages se feront via l'h?ritage
+    //la class Card sera la classe reference, comme on la derive en creature ou ritual, les damages se feront via l'heritage
     private final String name;
 
     public Card(String name){

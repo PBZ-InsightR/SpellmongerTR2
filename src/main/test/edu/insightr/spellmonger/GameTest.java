@@ -4,6 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 /**
@@ -16,16 +19,18 @@ public class GameTest{
     -addPlayer(Player p)
     -distribute(4 cartes dans le jeu et chaque joueur doit avoir 2 cartes)
     -???
+    -getWinner
      */
 
     private Game game;
-    private Ihm theIhm;
-    private IA theIA;
-    private Player p1;
-    private Player p2;
+    private Ihm ihm;
+    private IA ia;
+    private Map<String, Integer> tabCards;
     private ArrayList<Player> players;
     private Deck cardPool;
 
+    private Player p1;
+    private Player p2;
     private Card card1;
     private Card card2;
     private Card card3;
@@ -33,11 +38,12 @@ public class GameTest{
 
     @Before
     public void initializeTests(){
-        game = new Game(theIhm, theIA);
-        p1 = new Player("Al");
-        p2 = new Player("Bob");
+        game = new Game(ihm, ia);
+        tabCards = new HashMap<>();
         players = new ArrayList<>();
         cardPool = new Deck();
+        p1 = new Player("Al");
+        p2 = new Player("Bob");
         card1 = new Creature("Eagle");
         card2 = new Creature("Eagle");
         card3 = new Ritual("Medicine");
@@ -59,6 +65,28 @@ public class GameTest{
         cardPool.add(card3);
         cardPool.add(card4);
         //assertTrue(game.distribute()); // FAIL
+    }
+
+    @Test
+    public void testGetWinner() throws Exception {
+        assertNull(game.getWinner());
+        game.addPlayer(p1);
+        game.addPlayer(p2);
+        assertEquals(p1,game.getWinner());
+    }
+
+    @Test
+    public void testIsEnded() throws Exception {
+        game.addPlayer(p1);
+        assertTrue(game.isEnded());
+        game.addPlayer(p2);
+        assertFalse(game.isEnded());
+
+    }
+
+    @Test
+    public void testStart() throws Exception {
+
     }
 
     @Test

@@ -30,6 +30,7 @@ class Player {
     public Deck getPlayHand() {
         return playHand;
     }
+
     public Deck getDeck() { return deck; }
 
     public boolean noMoreCard() { return (getPlayHand().size() + getDeck().size()) == 0; }
@@ -50,7 +51,7 @@ class Player {
         healthPoint += delta;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 

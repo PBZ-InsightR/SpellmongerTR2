@@ -19,53 +19,54 @@ public class RitualTest {
     -getHeal
      */
 
-    private Ritual cardP;
-    private Ritual cardS;
-    private Ritual cardM;
+    private Ritual poison;
+    private Ritual shield;
+    private Ritual medicine;
 
 
     @Before
     public void initializeTests(){
-        cardP = new Ritual("Poison");
-        cardS = new Ritual("Shield");
-        cardM = new Ritual("Medicine");
+        poison = new Ritual("Poison");
+        shield = new Ritual("Shield");
+        medicine = new Ritual("Medicine");
     }
 
 
     @Test
     public void testGetDeltaPoints() throws Exception {
-        assertEquals(-3, cardP.getDeltaPoints());
-        assertEquals(0, cardS.getDeltaPoints());
-        assertEquals(3, cardM.getDeltaPoints());
+        assertEquals(-3, poison.getDeltaPoints());
+        assertEquals(0, shield.getDeltaPoints());
+        assertEquals(3, medicine.getDeltaPoints());
     }
 
     @Test
     public void testIsHeal() throws Exception {
-        assertTrue(cardM.isHeal());
-        assertFalse(cardP.isHeal());
-        assertFalse(cardS.isHeal());
+        assertFalse(poison.isHeal());
+        assertFalse(shield.isHeal());
+        assertTrue(medicine.isHeal());
+
     }
 
     @Test
     public void testIsShield() throws Exception {
-        assertTrue(cardS.isShield());
-        assertFalse(cardP.isShield());
-        assertFalse(cardM.isShield());
+        assertFalse(poison.isShield());
+        assertTrue(shield.isShield());
+        assertFalse(medicine.isShield());
     }
 
     @Test
     public void testGetDamages() throws Exception {
-        assertEquals(3, cardP.getDamages());
-        assertEquals(0, cardS.getDamages());
-        assertEquals(0, cardM.getDamages());
+        assertEquals(3, poison.getDamages());
+        assertEquals(0, shield.getDamages());
+        assertEquals(0, medicine.getDamages());
 
     }
 
     @Test
     public void testGetHeal() throws Exception {
-        assertEquals(0, cardP.getHeal());
-        assertEquals(0, cardS.getHeal());
-        assertEquals(3, cardM.getHeal());
+        assertEquals(0, poison.getHeal());
+        assertEquals(0, shield.getHeal());
+        assertEquals(3, medicine.getHeal());
     }
 
 }

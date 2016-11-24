@@ -61,7 +61,7 @@ class Game {
     }
 
 
-    private boolean Initialize() {
+    public boolean Initialize() {
         boolean bRes = false;
 
         roundCounter = 0;
@@ -241,13 +241,13 @@ class Game {
     }
 
 
-    private Player getWinner() {
+    public Player getWinner() {
         if (players.size() > 0) return players.get(0);
         else return null;
     }
 
 
-    private boolean isEnded() {
+    public boolean isEnded() {
         return players.size() < 2;
     }
 
