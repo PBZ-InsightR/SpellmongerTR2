@@ -27,8 +27,8 @@ public class PlayerTest{
 
     private Player playerHuman;
     private Player playerIA;
-    private Card bear;
-    private Card poison;
+    private Card cardB;
+    private Card cardP;
     private int n1;
     private int n2;
 
@@ -36,8 +36,8 @@ public class PlayerTest{
     public void initializeTests(){
         playerHuman = new Player("Hum");
         playerIA = new Player("Bot", false);
-        bear = new Creature("Bear");
-        poison = new Ritual("Poison");
+        cardB = new Creature("Bear");
+        cardP = new Ritual("Poison");
     }
 
     @Test
@@ -62,7 +62,7 @@ public class PlayerTest{
     public void testNoMoreCard() throws Exception {
         org.junit.Assert.assertTrue(playerHuman.noMoreCard());
 
-        playerHuman.getPlayHand().add(bear);
+        playerHuman.getPlayHand().add(cardB);
         org.junit.Assert.assertFalse(playerHuman.noMoreCard());
     }
 
@@ -108,10 +108,10 @@ public class PlayerTest{
 
     @Test
     public void testAddCardToDeck() throws Exception {
-        org.junit.Assert.assertTrue(playerHuman.addCardToDeck(bear));
-        org.junit.Assert.assertTrue(playerIA.addCardToDeck(poison));
-        org.junit.Assert.assertTrue(playerHuman.getDeck().contains(bear));
-        org.junit.Assert.assertTrue(playerIA.getDeck().contains(poison));
+        org.junit.Assert.assertTrue(playerHuman.addCardToDeck(cardB));
+        org.junit.Assert.assertTrue(playerIA.addCardToDeck(cardP));
+        org.junit.Assert.assertTrue(playerHuman.getDeck().contains(cardB));
+        org.junit.Assert.assertTrue(playerIA.getDeck().contains(cardP));
     }
 
 }
