@@ -12,13 +12,6 @@ import static org.junit.Assert.assertFalse;
  */
 public class CreatureTest{
 
-    /*
-    To test:
-    -isShield()
-    -getDamages()
-    -getHeal()
-     */
-
     private Creature cardE;
     private Creature cardW;
     private Creature cardB;

@@ -10,21 +10,6 @@ import org.junit.Test;
  */
 public class PlayerTest{
 
-    /*
-    To test:
-    -getHealthPoint
-    -getPlayHand
-    -getDeck
-    -noMoreCard
-    -setHealthPoint
-    -isHuman
-    -isIA
-    -changeHealthPoints
-    -getName
-    -addCardToDeck
-    -giveHand
-     */
-
     private Player playerHuman;
     private Player playerIA;
     private Card cardB;

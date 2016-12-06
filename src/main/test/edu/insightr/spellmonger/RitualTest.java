@@ -11,14 +11,6 @@ import static org.junit.Assert.*;
  */
 public class RitualTest {
 
-    /*
-    To test:
-    -getDeltaPoints
-    -isHeal
-    -getDamages
-    -getHeal
-     */
-
     private Ritual cardP;
     private Ritual cardS;
     private Ritual cardM;

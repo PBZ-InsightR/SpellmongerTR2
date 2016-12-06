@@ -15,11 +15,14 @@ import static org.junit.Assert.*;
 public class GameTest{
 
     /*
-    To test:
-    -addPlayer(Player p)
-    -distribute(4 cartes dans le jeu et chaque joueur doit avoir 2 cartes)
-    -???
-    -getWinner
+    Write test for:
+    -buildDeck
+    -Initialize
+    -PlayRound
+    -matchCards
+    -nextRound
+    -checkPlayers
+    -start
      */
 
     private Game game;
