@@ -6,9 +6,7 @@
     <artifactId>SpellmongerTR2</artifactId>
     <version>0.1</version>
 
-    <!--
-    | Project Information
-    -->
+    <!-- Project Information -->
     <name>SpellmongerTR2</name>
     <description>spellcaster game</description>
     <packaging>pom</packaging>
@@ -26,7 +24,7 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.11</version>
+            <version>1.2.17</version>
         </dependency>
 
         <!--TESTS UNITAIRES -->
@@ -34,6 +32,21 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+        </dependency>
+
+        <!-- CUCUMBER -->
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>1.2.5</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>1.2.5</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
