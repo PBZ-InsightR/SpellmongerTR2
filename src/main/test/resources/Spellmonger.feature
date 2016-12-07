@@ -1,4 +1,5 @@
 Feature: Spellmonger
+  Scenario:
   Game of cards for two players
 Cards:
   Creatures: eagle (1 point), wolf (2 points), bear (3 points)
