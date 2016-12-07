@@ -12,42 +12,35 @@ import static org.junit.Assert.assertFalse;
  */
 public class CreatureTest{
 
-    /*
-    To test:
-    -isShield()
-    -getDamages()
-    -getHeal()
-     */
-
-    private Creature eagle;
-    private Creature wolf;
-    private Creature bear;
+    private Creature cardE;
+    private Creature cardW;
+    private Creature cardB;
 
     @Before
     public void initializeTests(){
-        eagle = new Creature("Eagle");
-        wolf = new Creature("Wolf");
-        bear = new Creature("Bear");
+        cardE = new Creature("Eagle");
+        cardW = new Creature("Wolf");
+        cardB = new Creature("Bear");
     }
 
     @Test
     public void testIsShield() throws  Exception {
-        assertFalse(eagle.isShield());
-        assertFalse(wolf.isShield());
-        assertFalse(bear.isShield());
+        assertFalse(cardE.isShield());
+        assertFalse(cardW.isShield());
+        assertFalse(cardB.isShield());
     }
 
     @Test
     public void testGetDamages() throws Exception {
-        org.junit.Assert.assertEquals(1, eagle.getDamages());
-        org.junit.Assert.assertEquals(2, wolf.getDamages());
-        org.junit.Assert.assertEquals(3, bear.getDamages());
+        org.junit.Assert.assertEquals(1, cardE.getDamages());
+        org.junit.Assert.assertEquals(2, cardW.getDamages());
+        org.junit.Assert.assertEquals(3, cardB.getDamages());
     }
 
     @Test
     public void testGetHeal() throws Exception {
-        org.junit.Assert.assertEquals(0, eagle.getHeal());
-        org.junit.Assert.assertEquals(0, wolf.getHeal());
-        org.junit.Assert.assertEquals(0, bear.getHeal());
+        org.junit.Assert.assertEquals(0, cardE.getHeal());
+        org.junit.Assert.assertEquals(0, cardW.getHeal());
+        org.junit.Assert.assertEquals(0, cardB.getHeal());
     }
 }

@@ -15,11 +15,14 @@ import static org.junit.Assert.*;
 public class GameTest{
 
     /*
-    To test:
-    -addPlayer(Player p)
-    -distribute(4 cartes dans le jeu et chaque joueur doit avoir 2 cartes)
-    -???
-    -getWinner
+    Write test for:
+    -buildDeck
+    -Initialize
+    -PlayRound
+    -matchCards
+    -nextRound
+    -checkPlayers
+    -start
      */
 
     private Game game;
@@ -31,10 +34,10 @@ public class GameTest{
 
     private Player p1;
     private Player p2;
-    private Card card1;
-    private Card card2;
-    private Card card3;
-    private Card card4;
+    private Card cardE1;
+    private Card cardE2;
+    private Card cardM1;
+    private Card cardM2;
 
     @Before
     public void initializeTests(){
@@ -44,10 +47,10 @@ public class GameTest{
         cardPool = new Deck();
         p1 = new Player("Al");
         p2 = new Player("Bob");
-        card1 = new Creature("Eagle");
-        card2 = new Creature("Eagle");
-        card3 = new Ritual("Medicine");
-        card4 = new Ritual("Medicine");
+        cardE1 = new Creature("Eagle");
+        cardE2 = new Creature("Eagle");
+        cardM1 = new Ritual("Medicine");
+        cardM2 = new Ritual("Medicine");
     }
 
     @Test
@@ -60,10 +63,10 @@ public class GameTest{
     public void testDistribute() throws Exception {
         players.add(p1);
         players.add(p2);
-        cardPool.add(card1);
-        cardPool.add(card2);
-        cardPool.add(card3);
-        cardPool.add(card4);
+        cardPool.add(cardE1);
+        cardPool.add(cardE2);
+        cardPool.add(cardM1);
+        cardPool.add(cardM2);
         //assertTrue(game.distribute()); // FAIL
     }
 
