@@ -1,4 +1,5 @@
-Game of cards for two players
+Feature: Spellmonger
+  Game of cards for two players
 Cards:
   Creatures: eagle (1 point), wolf (2 points), bear (3 points)
   Ritual: poison (-3 health points), shield, medicine (+3 life points)
