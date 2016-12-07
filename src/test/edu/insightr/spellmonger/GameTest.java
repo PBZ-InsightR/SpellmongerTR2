@@ -59,6 +59,18 @@ public class GameTest{
         assertNotNull(players);
     }
 
+
+    @Test
+    public void testBuildDeck() throws Exception {
+
+    }
+
+
+    @Test
+    public void testInitialize() throws Exception {
+
+    }
+
     @Test
     public void testDistribute() throws Exception {
         players.add(p1);
@@ -68,6 +80,27 @@ public class GameTest{
         cardPool.add(cardM1);
         cardPool.add(cardM2);
         //assertTrue(game.distribute()); // FAIL
+    }
+
+
+    @Test
+    public void testPlayRound() throws Exception {
+
+    }
+
+    @Test
+    public void testMatchCards() throws Exception {
+
+    }
+
+    @Test
+    public void testNextRound() throws Exception {
+
+    }
+
+    @Test
+    public void testCheckPlayers() throws Exception {
+
     }
 
     @Test
@@ -89,11 +122,7 @@ public class GameTest{
 
     @Test
     public void testStart() throws Exception {
-
-    }
-
-    @Test
-    public void name() throws Exception {
+        assertTrue(game.start());
 
     }
 }
