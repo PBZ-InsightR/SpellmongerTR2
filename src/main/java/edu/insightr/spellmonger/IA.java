@@ -12,9 +12,16 @@ abstract class IA {
     protected static final Logger logger = Logger.getLogger(SpellmongerApp.class);
 
     public abstract void cardsDistributed();
-    public abstract void cardsAlreadyPlayed(Deck played, int roundsPlayed);
+    /*public abstract void cardsAlreadyPlayed(Deck played, int roundsPlayed);
     // a modifier pour ne passer à l'IA que les PV des adversaires
     public abstract Card askForCard(ArrayList<Player> players, int currentPlayerPos);
     public abstract void boardPlayed(Deck board);
-
+    */
+    //private abstract int cardCompt(Deck d);
+    public abstract void memorizeCard(Deck d);
+    public abstract Card askForCard(ArrayList<Player> players, int currentPlayerPos);
+    public abstract void boardPlayed(Deck board);
+    //private abstract Card getCard(Deck d, String[] names);
+    //private abstract double lifeCmpt(ArrayList<Player> p, int posIA);
 }
+
