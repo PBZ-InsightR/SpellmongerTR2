@@ -8,7 +8,6 @@ import java.util.*;
 /**
  * Used to define game constants (such as hp, decks, ...)
  * Created by Rod on 07/10/2016.
- * Update by Loiseau Thomas et Michon Paul
  */
 class Game {
     private static final Logger logger = Logger.getLogger(SpellmongerApp.class);
@@ -71,7 +70,11 @@ class Game {
             // cree le deck de jeu
             buildDeck();
 
-            Collections.shuffle(cardPool);
+            Random rnd = new Random(System.currentTimeMillis());
+            int nbIteration=rnd.nextInt(10000);
+            for(int i=0; i<nbIteration; i++){
+                Collections.shuffle(cardPool);
+            }
 
             // initialise les PV des joueurs
             players.forEach(p -> p.setHealthPoint(START_HEALTHPOINTS));
@@ -144,9 +147,7 @@ class Game {
         ihm.showPlayedCards(board);
 
         // on va calculer les rencontres entre tous les joueurs
-        // on part du joueur 0, jusqu'à l'avant-dernier
-        // (le dernier ayant déjà rencontré tout le monde à la fin de la boucle)
-        for (int idxAttack = 0; idxAttack < players.size() - 1; idxAttack++) {
+        for (int idxAttack = 0; idxAttack < players.size(); idxAttack++) {
             Card cAttack = board.get(idxAttack);
             Player pAttack = players.get(idxAttack);
             // on traite le soin du joueur à l'attaque
