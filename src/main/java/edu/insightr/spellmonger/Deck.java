@@ -19,8 +19,9 @@ class Deck extends ArrayList<Card> {
 
     public String toString() {
         String s = "";
+        int num=1;
         for (Card c : this) {
-            s += c.getName()+", ";
+            s += (num++) + ": " + c.getName()+" \n";
         }
         return s;
     }

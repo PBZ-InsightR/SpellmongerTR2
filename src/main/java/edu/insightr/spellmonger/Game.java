@@ -118,8 +118,8 @@ class Game {
 
         nextRound();
 
-        logger.info("\n");
-        logger.info("Playing round " + roundCounter);
+        ihm.showRound(roundCounter);
+
         Deck board = new Deck(players.size());
 
         // fournit les mains des joueurs à l'ihm avant le jeu
@@ -227,14 +227,15 @@ class Game {
      *
      */
     private void checkPlayers() {
+        ihm.showPlayers(players);
         ArrayList<Player> keep = new ArrayList<>(); // players to keep in play
         // check all players
         for (Player p : players) {
             if (p.getHealthPoint() > 0) {
-                logger.info("* Player " + p.getName() + " has " + p.getHealthPoint() + " HP left !");
+                //logger.info("* Player " + p.getName() + " has " + p.getHealthPoint() + " HP left !");
                 keep.add(p);
             } else {
-                logger.info("* Player " + p.getName() + " is eliminated !");
+                //logger.info("* Player " + p.getName() + " is eliminated !");
                 eliminated.add(p);
             }
         }

@@ -12,15 +12,17 @@ class Player {
     private Deck deck = new Deck(); // complete deck
     private Deck playHand = new Deck(); // 3 cards in play
     private int healthPoint = 0;
-    private boolean human;
+    private IA ia = null;
+    private Ihm ihm = null;
 
-    public Player(String playerName, boolean isHuman) {
+    public Player(String playerName, Ihm theIhm) {
         name = playerName;
-        human = isHuman;
+        ihm = theIhm;
     }
 
-    public Player(String name) {
-        this(name, true);
+    public Player(String playerName, IA theIa) {
+        name = playerName;
+        ia = theIa;
     }
 
     public int getHealthPoint() {
@@ -40,7 +42,7 @@ class Player {
     }
 
     public boolean isHuman() {
-        return human;
+        return ia != null;
     }
 
     public boolean isIA() {

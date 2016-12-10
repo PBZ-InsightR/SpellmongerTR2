@@ -11,6 +11,7 @@ import java.util.ArrayList;
 abstract class Ihm {
     protected static final Logger logger = Logger.getLogger(SpellmongerApp.class);
 
+    public abstract void showRound(int round);
     public abstract Card askForCard(Player p);
     public abstract void showPlayers(ArrayList<Player> players);
     public abstract void showPlayerHand(Deck hand, int position);

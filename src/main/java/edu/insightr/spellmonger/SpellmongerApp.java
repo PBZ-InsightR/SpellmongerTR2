@@ -33,8 +33,8 @@ public class SpellmongerApp {
         Game game = new Game(ihm, ia);
 
         // ajout des joueurs a la partie
-        game.addPlayer(new Player("Alf", false));
-        game.addPlayer(new Player("Bob", false));
+        game.addPlayer(new Player("Alf", ia));
+        game.addPlayer(new Player("Bob",  ihm));
         //game.addPlayer(new Player("Cid"));
         //game.addPlayer(new Player("Don"));
 
