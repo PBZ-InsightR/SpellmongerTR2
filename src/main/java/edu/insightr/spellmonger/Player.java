@@ -42,7 +42,7 @@ class Player {
     }
 
     public boolean isHuman() {
-        return ia != null;
+        return ia == null;
     }
 
     public boolean isIA() {
