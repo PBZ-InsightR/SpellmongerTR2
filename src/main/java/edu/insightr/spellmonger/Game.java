@@ -121,7 +121,7 @@ class Game {
     }
 
 
-    private void playRound() {
+    public void playRound() {
 
         nextRound();
 

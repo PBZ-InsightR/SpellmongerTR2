@@ -3,12 +3,8 @@ package edu.insightr.spellmonger;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import edu.insightr.spellmonger.Game;
-import edu.insightr.spellmonger.IA_v1;
-import edu.insightr.spellmonger.IhmConsole;
-import edu.insightr.spellmonger.Player;
-import org.junit.*;
 
+import javax.lang.model.type.NullType;
 import java.util.Map;
 
 /**
@@ -35,7 +31,6 @@ public class CardVSCard_StepDef {
         p1 = new Player(player1, ihm);
         p2 = new Player(player2, ihm);
 
-        myMap = new Map<String, Player>;
         myMap.put(player1, p1);
         myMap.put(player2, p2);
 
@@ -44,7 +39,7 @@ public class CardVSCard_StepDef {
         game.addPlayer(p2);
 
         // verify player's hp
-        assert (p1.getHealthPoint() == p2.getHealthPoint() == hp);
+        assert (p1.getHealthPoint() == hp && p2.getHealthPoint() == hp);
 
     }
 
@@ -55,19 +50,35 @@ public class CardVSCard_StepDef {
         Card c;
 
         // cardType could be: [Heal, Poison, Shield, Wolf, Eagle, Bear]
+        // if ritual
         if(cardType == Ritual.RITUAL_MEDICINE) c = new Ritual(Ritual.RITUAL_MEDICINE);
         else if(cardType == Ritual.RITUAL_POISON) c = new Ritual(Ritual.RITUAL_POISON);
         else if(cardType == Ritual.RITUAL_SHIELD) c = new Ritual(Ritual.RITUAL_SHIELD);
+        // if creature
+        else if(cardType == Creature.CREA_BEAR) c = new Creature(Creature.CREA_BEAR);
+        else if(cardType == Creature.CREA_EAGLE) c = new Creature(Creature.CREA_EAGLE);
+        else c = new Creature(Creature.CREA_WOLF);
 
-        // play card in current round
+        // add card to player hand
+        myMap.get(playerName).addCardToDeck(c);
+
+    }
+
+    public Player checkWinner(Map<String, Player> myMap){
+
+        int p1hp = myMap.get(p1).getHealthPoint(), p2hp = myMap.get(p2).getHealthPoint();
+
+        return (p1hp > p2hp) ? p1 : p2;
 
     }
 
     @Then("^\"([^\"]*)\" wins the round$")
-    public void winsTheRoud(String arg0) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
+    public void winsTheRoud(String player) throws Throwable {
 
+        game.playRound();
 
+        // verify winner by checking players hp
+        assert(checkWinner(myMap) == myMap.get(player));
 
     }
 }
