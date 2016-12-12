@@ -16,11 +16,15 @@ public class PlayerTest{
     private Card cardP;
     private int n1;
     private int n2;
+    private Ihm ihm;
+    private IA_v1 ia;
 
     @Before
     public void initializeTests(){
-        playerHuman = new Player("Hum");
-        playerIA = new Player("Bot", false);
+        ia = new IA_v1();
+        ihm = new IhmConsole();
+        playerHuman = new Player("Hum", ihm);
+        playerIA = new Player("Bot", ia);
         cardB = new Creature("Bear");
         cardP = new Ritual("Poison");
     }

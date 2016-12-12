@@ -21,8 +21,9 @@ public class IhmConsoleTest {
 
     @Before
     public void InitializeTests() throws Exception {
-        playerHuman = new Player("Hum");
-        playerIA = new Player("Bot", false);
+        ihm = new IhmConsole();
+        playerHuman = new Player("Hum", ihm);
+        playerIA = new Player("Bot", ihm);
         deck = new Deck();
         cardE = new Creature("Eagle");
         cardW = new Creature("Wolf");

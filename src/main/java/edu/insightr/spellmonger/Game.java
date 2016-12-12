@@ -59,6 +59,13 @@ class Game {
         });
     }
 
+    public void buildTestDeck(ArrayList<Card> cardsList) {
+        // on crée les cartes en fonction de la répartition prévue dans tabCards
+        for (int i = 0; i < cardsList.size(); i++){
+            cardPool.add(cardsList.get(i));
+        }
+    };
+
 
     public boolean Initialize() {
         boolean bRes = false;

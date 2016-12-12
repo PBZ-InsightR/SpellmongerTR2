@@ -41,12 +41,14 @@ public class GameTest{
 
     @Before
     public void initializeTests(){
+        ia = new IA_v1();
+        ihm = new IhmConsole();
         game = new Game(ihm, ia);
         tabCards = new HashMap<>();
         players = new ArrayList<>();
         cardPool = new Deck();
-        p1 = new Player("Al");
-        p2 = new Player("Bob");
+        p1 = new Player("Al", ihm);
+        p2 = new Player("Bob", ihm);
         cardE1 = new Creature("Eagle");
         cardE2 = new Creature("Eagle");
         cardM1 = new Ritual("Medicine");

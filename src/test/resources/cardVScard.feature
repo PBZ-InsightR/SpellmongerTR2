@@ -13,4 +13,4 @@ Feature: Spellmonger Card Rules Check
     When "Alice" plays a "Wolf"
       And "Bob" plays a "Eagle"
 
-    Then "Alice" wins the roud
+    Then "Alice" wins the round
