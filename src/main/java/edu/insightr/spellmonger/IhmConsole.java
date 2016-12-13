@@ -1,7 +1,5 @@
 package edu.insightr.spellmonger;
 
-import org.apache.log4j.Logger;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -9,7 +7,7 @@ import java.util.ArrayList;
  * Used to manage "human" player on console
  * Created by Rod on 07/10/2016.
  */
-class IhmConsole extends Ihm {
+public class IhmConsole extends Ihm {
 
     public void showRound(int round) {
         System.out.println("Playing round #"+ round);

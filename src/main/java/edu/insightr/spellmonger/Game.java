@@ -9,13 +9,13 @@ import java.util.*;
  * Used to define game constants (such as hp, decks, ...)
  * Created by Rod on 07/10/2016.
  */
-class Game {
+public class Game {
     private static final Logger logger = Logger.getLogger(SpellmongerApp.class);
 
     private final int START_HEALTHPOINTS = 20;    // starting health points for players
 
     private Ihm ihm;    // the ihm used for the game
-    private IA ia;      // the IA used for the game
+    public IA ia;      // the IA used for the game
     private final Map<String, Integer> tabCards = new HashMap<>();  // for cards repartition
     private Deck cardPool = new Deck();   // cards stack for the game
 

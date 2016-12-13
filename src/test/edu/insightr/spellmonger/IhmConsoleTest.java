@@ -39,7 +39,7 @@ public class IhmConsoleTest {
         //needs a player
         //1st test 1 card in deck
         playerHuman.addCardToDeck(cardB);
-        org.junit.Assert.assertEquals(ihm.askForCard(playerHuman), cardB);
+        org.junit.Assert.assertEquals(playerHuman.getPlayHand().get(0), cardB);
     }
 
     @Test//returns first card of player's hand
@@ -49,7 +49,7 @@ public class IhmConsoleTest {
         playerHuman.addCardToDeck(cardB);
         playerHuman.addCardToDeck(cardE);
         playerHuman.addCardToDeck(cardW);
-        org.junit.Assert.assertTrue(ihm.askForCard(playerHuman) instanceof Card);
+        org.junit.Assert.assertTrue(playerHuman.getPlayHand().get(0) instanceof Card);
     }
 
     //les autres méthodes sont des méthodes de logging, pas de tests nécessaires...

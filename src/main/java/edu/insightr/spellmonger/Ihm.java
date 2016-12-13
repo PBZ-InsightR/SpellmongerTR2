@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Used to define human interface
  * Created by Rod on 07/10/2016.
  */
-abstract class Ihm {
+public abstract class Ihm {
     protected static final Logger logger = Logger.getLogger(SpellmongerApp.class);
 
     public abstract void showRound(int round);

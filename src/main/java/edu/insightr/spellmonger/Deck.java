@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Used to set Deck car
  * Created by Rod on 30/09/2016.
  */
-class Deck extends ArrayList<Card> {
+public class Deck extends ArrayList<Card> {
 
     Deck() { super(); }
 

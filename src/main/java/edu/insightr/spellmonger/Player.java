@@ -6,7 +6,7 @@ package edu.insightr.spellmonger;
  * Created by Aurélie on 28/09/2016.
  */
 
-class Player {
+public class Player {
 
     private String name;
     private Deck deck = new Deck(); // complete deck

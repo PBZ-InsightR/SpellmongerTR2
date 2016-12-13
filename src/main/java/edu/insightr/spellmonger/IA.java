@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Used to define intelligent IA (using a strategy)
  * Created by Paul on 21/10/2016.
  */
-abstract class IA {
+public abstract class IA {
     protected static final Logger logger = Logger.getLogger(SpellmongerApp.class);
 
     public abstract void cardsDistributed();
