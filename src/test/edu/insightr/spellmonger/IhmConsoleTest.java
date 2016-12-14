@@ -14,23 +14,17 @@ public class IhmConsoleTest {
     private Card cardE;
     private Card cardW;
     private Card cardB;
-    private Card cardP;
-    private Card cardS;
-    private Card cardM;
     private IhmConsole ihm;
 
     @Before
     public void InitializeTests() throws Exception {
         ihm = new IhmConsole();
         playerHuman = new Player("Hum", ihm);
-        playerIA = new Player("Bot", ihm);
+        //playerIA = new Player("Bot", ihm);
+        //playerIA = new Player("Bot", ia);
         deck = new Deck();
         cardE = new Creature("Eagle");
         cardW = new Creature("Wolf");
-        cardB = new Creature("Bear");
-        cardP = new Ritual("Poison");
-        cardS = new Ritual("Shield");
-        cardM = new Ritual("Medicine");
         ihm = new IhmConsole();
     }
 

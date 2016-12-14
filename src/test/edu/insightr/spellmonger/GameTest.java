@@ -26,12 +26,11 @@ public class GameTest{
      */
 
     private Game game;
-    private Ihm ihm;
-    private IA ia;
+    private IhmConsole ihm;
+    private IA_v1 ia;
     private Map<String, Integer> tabCards;
     private ArrayList<Player> players;
     private Deck cardPool;
-
     private Player p1;
     private Player p2;
     private Card cardE1;
@@ -64,7 +63,7 @@ public class GameTest{
 
     @Test
     public void testBuildDeck() throws Exception {
-
+        //method
     }
 
 

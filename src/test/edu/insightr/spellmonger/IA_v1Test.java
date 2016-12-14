@@ -11,17 +11,22 @@ public class IA_v1Test {
 
     /*
     Write tests for:
-    -cardsAlreadyPlayed
-    -getCard
-    -askForCard
-    -calcBoardPower
-    -lifeCmpt
-    -cardDistributed
-    -boardPlayed
+    cardCompt
+    memorizeCard
+    askForCard
+    getCard
+    lifeCmpt
+    boardPlayed
+    cardsDistributed
      */
 
     @Test
-    public void testCardsAlreadyPlayed() throws Exception {
+    public void testCardsCompt() throws Exception {
+        //private method
+    }
+
+    @Test
+    public void testMemorizeCard() throws Exception {
 
     }
 
@@ -31,17 +36,23 @@ public class IA_v1Test {
     }
 
     @Test
-    public void testCalcBoardPower() throws Exception {
+    public void testGetCard() throws Exception {
+        //private method
+    }
+
+    @Test
+    public void testLifeCmpt() throws Exception {
+        //private method
+    }
+
+
+    @Test
+    public void testBoardPlayed() throws Exception {
 
     }
 
     @Test
     public void testCardsDistributed() throws Exception {
-
-    }
-
-    @Test
-    public void testBoardPlayed() throws Exception {
 
     }
 

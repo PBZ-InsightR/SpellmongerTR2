@@ -261,7 +261,7 @@ public class Game {
     }
 
 
-    boolean start() {
+    public boolean start() {
         boolean bRes = false;
         if (ihm == null) throw new MissingResourceException("IHM object not defined", "Ihm", "100");
         if (ia == null) throw new MissingResourceException("IA object not defined", "IA", "200");
