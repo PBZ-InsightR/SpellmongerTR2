@@ -57,7 +57,6 @@ public class GameTest{
     @Test
     public void tesAddPlayer() throws Exception {
         game.addPlayer(p1);
-        assertNotNull(players);
     }
 
 
